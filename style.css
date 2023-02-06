@@ -1,0 +1,31 @@
+* {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.icon-font-awesome {
+  color: purple;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.15em;
+}
+
+.nav-item {
+  margin-left: 0.5em;
+}
+
+th {
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+.file-table td, th {
+  padding: 0.75em 0.1rem !important;
+  vertical-align: middle !important;
+}
+
+/* Align center first column of table */
+.file-table td:first-child, th:first-child {
+  text-align: center;
+  align-self:center;
+}
