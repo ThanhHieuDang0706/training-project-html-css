@@ -45,7 +45,7 @@
       <nav class="navbar navbar-expand-lg navbar-collapse-md navbar-light bg-light">
         <!-- Toggle when mobile screen -->
         <button
-          class="w-100 text-right navbar-toggler"
+          class="w-100 text-right navbar-toggler border-0"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -103,14 +103,14 @@
       </nav>
 
       <!-- header -->
-      <section class="px-4 py-4">
+      <section class="d-sm-block px-sm-2 d-lg-block px-4 py-4">
         <!-- hide on small screen -->
-        <header class="d-sm-none d-lg-block">
-          <h4>Documents</h4>
+        <header class="d-sm-block mb-2 d-lg-block mb-4">
+          <h4 class="font-weight-light">Documents</h4>
         </header>
 
         <!-- table for large screens -->
-        <table class="table file-table d-sm-none d-lg-table">
+        <table class="table table-sm file-table d-sm-none d-lg-table">
           <thead className="text-secondary font-small">
             <tr>
               <th scope="col">
@@ -225,7 +225,281 @@
           </tbody>
         </table>
 
-        <!-- Card-like for small screens -->
+        <!-- card for small screens -->
+        <div class="d-sm-block card w-100 d-lg-none mb-5">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-6 text-left">
+                <span class="font-italic font-weight-bold">File Type</span>
+              </div>
+  
+              <div class="col-6 text-right px-2">
+                <i class="fa fa-regular fa-folder-open"></i>
+              </div>
+            </div>
+            
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <!-- name row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Name</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>CAS</span>
+                </div>
+              </div>
+            </li>
+
+            <!-- Modified row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>April 30</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified By</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>Megan Bowen</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="d-sm-block card w-100 d-lg-none mb-5">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-6 text-left">
+                <span class="font-italic font-weight-bold">File Type</span>
+              </div>
+  
+              <div class="col-6 text-right px-2">
+                <i class="fa fa-file-excel text-success"></i>
+              </div>
+            </div>
+            
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <!-- name row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Name</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>CoasterAndBoargeLoading.xlsx</span>
+                </div>
+              </div>
+            </li>
+
+            <!-- Modified row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>A few seconds ago</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified By</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>Administrator MOD</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="d-sm-block card w-100 d-lg-none mb-5">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-6 text-left">
+                <span class="font-italic font-weight-bold">File Type</span>
+              </div>
+  
+              <div class="col-6 text-right px-2">
+                <i class="fa fa-file-excel text-success"></i>
+              </div>
+            </div>
+            
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <!-- name row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Name</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>RevenueByServices.xlsx</span>
+                </div>
+              </div>
+            </li>
+
+            <!-- Modified row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>A few seconds ago</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified By</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>Administrator MOD</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="d-sm-block card w-100 d-lg-none mb-5">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-6 text-left">
+                <span class="font-italic font-weight-bold">File Type</span>
+              </div>
+  
+              <div class="col-6 text-right px-2">
+                <i class="fa fa-file-excel text-success"></i>
+              </div>
+            </div>
+            
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <!-- name row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Name</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>RevenueByServices2016.xlsx</span>
+                </div>
+              </div>
+            </li>
+
+            <!-- Modified row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>A few seconds ago</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified By</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>Administrator MOD</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="d-sm-block card w-100 d-lg-none mb-5">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-6 text-left">
+                <span class="font-italic font-weight-bold">File Type</span>
+              </div>
+  
+              <div class="col-6 text-right px-2">
+                <i class="fa fa-file-excel text-success"></i>
+              </div>
+            </div>
+            
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <!-- name row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Name</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>RevenueByServices2017.xlsx</span>
+                </div>
+              </div>
+            </li>
+
+            <!-- Modified row -->
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>A few seconds ago</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-3">
+                  <span class="font-italic font-weight-bold">Modified By</span>
+                </div>
+  
+                <div class="col-9">
+                  <span>Administrator MOD</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </section>
     </div>
   </body>
