@@ -4,12 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -33,7 +27,7 @@
     />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./dist/css/home-page.css" />
 
     <title>HTML/CSS Training</title>
   </head>
@@ -110,26 +104,26 @@
         </header>
 
         <!-- table for large screens -->
-        <table class="table table-sm file-table d-sm-none d-lg-table">
-          <thead className="text-secondary font-small">
+        <table class="table table-sm file-table">
+          <thead>
             <tr>
               <th scope="col">
                 <i class="fa fa-regular fa-file"></i>
               </th>
               <th scope="col">
                 Name
-                <i class="text-secondary fa fa-light fa-caret-down"></i>
+                <i class="fa fa-light fa-caret-down"></i>
               </th>
               <th scope="col">
                 Modified
-                <i class="text-secondary fa fa-light fa-caret-down"></i>
+                <i class="fa fa-light fa-caret-down"></i>
               </th>
               <th scope="col">
                 Modified By
-                <i class="text-secondary fa fa-light fa-caret-down"></i>
+                <i class=" fa fa-light fa-caret-down"></i>
               </th>
               <th scope="col">
-                <i class="text-secondary fa fa-thin fa-plus"></i>
+                <i class="fa fa-thin fa-plus"></i>
                 Add Column
               </th>
             </tr>
@@ -137,366 +131,216 @@
 
           <tbody>
             <tr>
-              <td>
-                <i class="fa fa-regular fa-folder-open"></i>
+              <td class="table-first-row">
+                <div class="table-row-header col-xs-3">
+                  File Type
+                </div>
+
+                <div class="col-xs-9">
+                  <i class="fa fa-regular fa-folder-open"></i>
+                </div>
               </td>
-              <td>CAS</td>
-              <td class="text-secondary">
-                <small>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Name
+                </div>
+
+                <div class="col-xs-9">
+                  CAS
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified
+                </div>
+
+                <div class="modified-col col-xs-9">
                   April 30
-                </small>
+                </div>
               </td>
-              <td class="text-secondary">
-                <small>
-                  Megan Bowen
-                </small>
-              </td>
-            </tr>
 
-            <tr>
-              <th scope="row">
-                <i class="text-success fa fa-light fa-file-excel"></i>
-              </th>
               <td>
-                CoasterAndBargeLoading.xlsx
-              </td>
-              <td class="text-secondary">
-                <small>
-                  A few seconds ago
-                </small>
-              </td>
-              <td class="text-secondary">
-                <small>
-                  Administrator MOD
-                </small>
+                <div class="table-row-header col-xs-3">
+                  Modified By
+                </div>
+
+                <div class="modified-col col-xs-9">
+                  Megan Bowen
+                </div>
               </td>
             </tr>
 
             <tr>
-              <th scope="row">
-                <i class="text-success fa fa-light fa-file-excel"></i>
-              </th>
-              <td>RevenueByServices.xlsx</td>
-              <td class="text-secondary">
-                <small>
-                  A few seconds ago
-                </small>
+              <td class="table-first-row">
+                <div class="table-row-header col-xs-3">
+                  File Type
+                </div>
+
+                <div class="col-xs-9">
+                  <i class="text-success fa fa-light fa-file-excel"></i>
+                </div>
               </td>
-              <td class="text-secondary">
-                <small>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Name
+                </div>
+
+                <div class="col-xs-9">
+                  CoasterAndBargeLoading.xlsx
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified
+                </div>
+
+                <div class="modified-col col-xs-9">
+                  A few seconds ago
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified By
+                </div>
+
+                <div class="modified-col col-xs-9">
                   Administrator MOD
-                </small>
+                </div>
               </td>
             </tr>
 
             <tr>
-              <th scope="row">
-                <i class="text-success fa fa-light fa-file-excel"></i>
-              </th>
-              <td>RevenueByServices2016.xlsx</td>
-              <td class="text-secondary">
-                <small>
-                  A few seconds ago
-                </small>
+              <td class="table-first-row">
+                <div class="table-row-header col-xs-3">
+                  File Type
+                </div>
+
+                <div class="col-xs-9">
+                  <i class="text-success fa fa-light fa-file-excel"></i>
+                </div>
               </td>
-              <td class="text-secondary">
-                <small>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Name
+                </div>
+
+                <div class="col-xs-9">
+                  RevenueByServices.xlsx
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified
+                </div>
+
+                <div class="modified-col col-xs-9">
+                  A few seconds ago
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified By
+                </div>
+
+                <div class="modified-col col-xs-9">
                   Administrator MOD
-                </small>
+                </div>
               </td>
             </tr>
 
             <tr>
-              <th scope="row">
-                <i class="text-success fa fa-light fa-file-excel"></i>
-              </th>
-              <td>RevenueByServices2017.xlsx</td>
-              <td class="text-secondary">
-                <small>
-                  A few seconds ago
-                </small>
+              <td class="table-first-row">
+                <div class="table-row-header col-xs-3">
+                  File Type
+                </div>
+
+                <div class="col-xs-9">
+                  <i class="text-success fa fa-light fa-file-excel"></i>
+                </div>
               </td>
-              <td class="text-secondary">
-                <small>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Name
+                </div>
+
+                <div class="col-xs-9">
+                  RevenueByServices2016.xlsx
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified
+                </div>
+
+                <div class="modified-col col-xs-9">
+                  A few seconds ago
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified By
+                </div>
+
+                <div class="modified-col col-xs-9">
                   Administrator MOD
-                </small>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="table-first-row">
+                <div class="table-row-header col-xs-3">
+                  File Type
+                </div>
+
+                <div class="col-xs-9">
+                  <i class="text-success fa fa-light fa-file-excel"></i>
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Name
+                </div>
+
+                <div class="col-xs-9">
+                  RevenueByServices2017.xlsx
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified
+                </div>
+
+                <div class="modified-col col-xs-9">
+                  A few seconds ago
+                </div>
+              </td>
+
+              <td>
+                <div class="table-row-header col-xs-3">
+                  Modified By
+                </div>
+
+                <div class="modified-col col-xs-9">
+                  Administrator MOD
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
-
-        <!-- card for small screens -->
-        <section class="d-sm-block d-lg-none">
-          <div class="card w-100 mb-5">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-6 text-left">
-                  <span class="font-italic font-weight-bold">File Type</span>
-                </div>
-
-                <div class="col-6 text-right px-2">
-                  <i class="fa fa-regular fa-folder-open"></i>
-                </div>
-              </div>
-            </div>
-
-            <ul class="list-group list-group-flush">
-              <!-- name row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Name</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>CAS</span>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Modified row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>April 30</span>
-                  </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified By</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>Megan Bowen</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card w-100 mb-5">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-6 text-left">
-                  <span class="font-italic font-weight-bold">File Type</span>
-                </div>
-
-                <div class="col-6 text-right px-2">
-                  <i class="fa fa-file-excel text-success"></i>
-                </div>
-              </div>
-            </div>
-
-            <ul class="list-group list-group-flush">
-              <!-- name row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Name</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>CoasterAndBoargeLoading.xlsx</span>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Modified row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>A few seconds ago</span>
-                  </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified By</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>Administrator MOD</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card w-100 mb-5">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-6 text-left">
-                  <span class="font-italic font-weight-bold">File Type</span>
-                </div>
-
-                <div class="col-6 text-right px-2">
-                  <i class="fa fa-file-excel text-success"></i>
-                </div>
-              </div>
-            </div>
-
-            <ul class="list-group list-group-flush">
-              <!-- name row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Name</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>RevenueByServices.xlsx</span>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Modified row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>A few seconds ago</span>
-                  </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified By</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>Administrator MOD</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card w-100 mb-5">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-6 text-left">
-                  <span class="font-italic font-weight-bold">File Type</span>
-                </div>
-
-                <div class="col-6 text-right px-2">
-                  <i class="fa fa-file-excel text-success"></i>
-                </div>
-              </div>
-            </div>
-
-            <ul class="list-group list-group-flush">
-              <!-- name row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Name</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>RevenueByServices2016.xlsx</span>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Modified row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>A few seconds ago</span>
-                  </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified By</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>Administrator MOD</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card w-100 mb-5">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-6 text-left">
-                  <span class="font-italic font-weight-bold">File Type</span>
-                </div>
-
-                <div class="col-6 text-right px-2">
-                  <i class="fa fa-file-excel text-success"></i>
-                </div>
-              </div>
-            </div>
-
-            <ul class="list-group list-group-flush">
-              <!-- name row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Name</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>RevenueByServices2017.xlsx</span>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Modified row -->
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>A few seconds ago</span>
-                  </div>
-                </div>
-              </li>
-
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-3">
-                    <span class="font-italic font-weight-bold">Modified By</span>
-                  </div>
-
-                  <div class="col-9">
-                    <span>Administrator MOD</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
       </section>
     </div>
   </body>
