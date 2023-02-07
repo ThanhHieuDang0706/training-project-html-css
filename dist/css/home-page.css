@@ -9947,10 +9947,6 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.icon-font-awesome {
-  color: purple;
-}
-
 .dropdown-toggle::after {
   margin-left: 0.15rem;
 }
@@ -10036,6 +10032,10 @@ tr {
 
 .nav-item-spacing {
   margin-left: 0.5rem;
+}
+
+.nav-item:hover {
+  background-color: #dee2e6;
 }
 
 /*# sourceMappingURL=home-page.css.map*/
