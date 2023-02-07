@@ -10031,7 +10031,8 @@ tr {
 }
 
 .nav-item-spacing {
-  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .nav-item:hover {

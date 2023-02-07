@@ -1,5 +1,6 @@
 .nav-item-spacing {
-  margin-left: $spacer * 0.5;
+  padding-left: $spacer * 0.5;
+  padding-right: $spacer * 0.5;
 }
 
 .nav-item:hover {
