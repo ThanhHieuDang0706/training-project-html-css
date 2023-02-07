@@ -10031,5 +10031,8 @@ th:first-child {
     padding-right: 0.5rem;
   }
 }
+.purple-icon {
+  color: purple;
+}
 
 /*# sourceMappingURL=home-page.css.map*/

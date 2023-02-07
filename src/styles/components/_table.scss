@@ -37,9 +37,6 @@ th:first-child {
   font-size: $font-size-sm;
 }
 
-
-
-
 @include media-breakpoint-down(md) { 
   .file-table {
     th {
