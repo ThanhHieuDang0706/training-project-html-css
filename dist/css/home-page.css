@@ -9967,6 +9967,7 @@ h3 {
 th {
   font-weight: 400;
   font-size: 0.875rem;
+  border: 0;
 }
 
 .file-table td,
@@ -9990,7 +9991,10 @@ th:first-child {
   font-size: 0.875rem;
 }
 
-tr {
+.file-table th {
+  border: none;
+}
+.file-table tbody tr {
   border-bottom: 1px solid #dee2e6;
 }
 

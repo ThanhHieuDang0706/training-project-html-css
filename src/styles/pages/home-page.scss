@@ -8,6 +8,7 @@
 th {
   font-weight: $font-weight-normal;
   font-size: $font-size-sm;
+  border: 0;
 }
 
 .file-table td,
@@ -31,9 +32,16 @@ th:first-child {
   font-size: $font-size-sm;
 }
 
-tr {
-  border-bottom: 1px solid $gray-300;
+.file-table {
+  th {
+    border: none;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $gray-300;
+  }
 }
+
 
 @include media-breakpoint-down(md) {
   .file-table {
