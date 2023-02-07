@@ -9947,6 +9947,19 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.purple-icon {
+  color: purple;
+}
+
+.nav-item-spacing {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.nav-item:hover {
+  background-color: #dee2e6;
+}
+
 .dropdown-toggle::after {
   margin-left: 0.15rem;
 }
@@ -10025,18 +10038,6 @@ tr {
   .file-table .table-first-row .col-xs-9 {
     padding-right: 0.5rem;
   }
-}
-.purple-icon {
-  color: purple;
-}
-
-.nav-item-spacing {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.nav-item:hover {
-  background-color: #dee2e6;
 }
 
 /*# sourceMappingURL=home-page.css.map*/
