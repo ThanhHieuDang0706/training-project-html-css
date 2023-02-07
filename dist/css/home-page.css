@@ -9955,10 +9955,6 @@ h3 {
   margin-left: 0.15rem;
 }
 
-.nav-item {
-  margin-left: 0.5rem;
-}
-
 th {
   font-weight: 400;
   font-size: 0.875rem;
@@ -9970,7 +9966,6 @@ th {
   padding-bottom: 0.75rem;
 }
 
-/* Align center first column of table */
 .file-table td:first-child,
 th:first-child {
   text-align: center;
@@ -9984,6 +9979,10 @@ th:first-child {
 .modified-col {
   color: #6c757d;
   font-size: 0.875rem;
+}
+
+tr {
+  border-bottom: 1px solid #dee2e6;
 }
 
 @media (max-width: 991.98px) {
@@ -10033,6 +10032,10 @@ th:first-child {
 }
 .purple-icon {
   color: purple;
+}
+
+.nav-item-spacing {
+  margin-left: 0.5rem;
 }
 
 /*# sourceMappingURL=home-page.css.map*/
