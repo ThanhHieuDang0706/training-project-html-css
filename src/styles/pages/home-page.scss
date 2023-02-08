@@ -1,6 +1,11 @@
 // Home page styles
 @import 'master-page';
 
+@mixin make-border-side {
+  border-right: 1px solid $gray-300;
+  border-left: 1px solid $gray-300;
+}
+
 .dropdown-toggle::after {
   margin-left: $spacer * 0.15;
 }
@@ -20,7 +25,6 @@ th {
 .file-table td:first-child,
 th:first-child {
   text-align: center;
-  align-self: center;
 }
 
 .table-row-header {
@@ -52,7 +56,7 @@ th:first-child {
     tr {
       display: block;
       margin-bottom: $spacer * 2;
-      border: 1px solid $gray-300;
+      @include make-border-side();
     }
 
     td {
@@ -66,10 +70,6 @@ th:first-child {
         color: $black;
         font-size: $font-size-base;
       }
-    }
-
-    td:first-child {
-      text-align: end;
     }
 
     .table-row-header {

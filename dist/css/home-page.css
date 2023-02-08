@@ -9979,7 +9979,6 @@ th {
 .file-table td:first-child,
 th:first-child {
   text-align: center;
-  align-self: center;
 }
 
 .table-row-header {
@@ -10005,7 +10004,8 @@ th:first-child {
   .file-table tr {
     display: block;
     margin-bottom: 2rem;
-    border: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
   }
   .file-table td {
     display: block;
@@ -10020,9 +10020,6 @@ th:first-child {
   .file-table td .modified-col {
     color: #000;
     font-size: 1rem;
-  }
-  .file-table td:first-child {
-    text-align: end;
   }
   .file-table .table-row-header {
     display: block;
