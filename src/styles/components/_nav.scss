@@ -6,3 +6,8 @@
 .nav-item:hover {
   background-color: $gray-300;
 }
+
+.dropdown-toggle::after {
+  margin-left: $spacer * 0.15;
+}
+

@@ -1,1 +1,6 @@
-// Define mixins
+// Define mixins'
+
+@mixin make-border-side($color: $gray-300, $width: 1px) {
+  border-left: $width solid $color;
+  border-right: $width solid $color;
+}

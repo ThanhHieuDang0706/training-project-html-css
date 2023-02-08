@@ -1,0 +1,87 @@
+@import '../utilities/mixins';
+
+.file-table td,
+th {
+  padding-top: $spacer * 0.75;
+  padding-bottom: $spacer * 0.75;
+}
+
+.file-table td:first-child,
+th:first-child {
+  text-align: center;
+  padding-left: $spacer * 2;
+}
+
+.table-row-header {
+  display: none;
+}
+
+.modified-col {
+  color: $secondary;
+  font-size: $font-size-sm;
+}
+
+.file-table {
+  th {
+    font-weight: $font-weight-normal;
+    font-size: $font-size-sm;
+    border: 0;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $gray-300;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .file-table {
+    td:first-child,
+    th:first-child {
+      padding-left: $spacer * 0.5;
+    }
+    th {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: $spacer * 2;
+      @include make-border-side();
+    }
+
+    td {
+      display: block;
+      width: 100%;
+      @include make-row(0);
+      font-size: $font-size-base;
+      padding-left: $spacer * 0.5;
+
+      .modified-col {
+        color: $black;
+        font-size: $font-size-base;
+      }
+    }
+
+    .table-row-header {
+      display: block;
+      width: 25%;
+      font-weight: $font-weight-bold;
+      font-style: italic;
+    }
+
+    .table-first-row {
+      background: $gray-200;
+      font-weight: $font-weight-bold;
+      font-style: italic;
+      justify-content: space-between;
+
+      .table-row-header {
+        width: auto;
+      }
+
+      .col-xs-9 {
+        padding-right: $spacer * 0.5;
+      }
+    }
+  }
+}

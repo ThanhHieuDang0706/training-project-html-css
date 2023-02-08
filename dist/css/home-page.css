@@ -9964,12 +9964,6 @@ h3 {
   margin-left: 0.15rem;
 }
 
-th {
-  font-weight: 400;
-  font-size: 0.875rem;
-  border: 0;
-}
-
 .file-table td,
 th {
   padding-top: 0.75rem;
@@ -9979,6 +9973,7 @@ th {
 .file-table td:first-child,
 th:first-child {
   text-align: center;
+  padding-left: 2rem;
 }
 
 .table-row-header {
@@ -9991,21 +9986,27 @@ th:first-child {
 }
 
 .file-table th {
-  border: none;
+  font-weight: 400;
+  font-size: 0.875rem;
+  border: 0;
 }
 .file-table tbody tr {
   border-bottom: 1px solid #dee2e6;
 }
 
 @media (max-width: 991.98px) {
+  .file-table td:first-child,
+.file-table th:first-child {
+    padding-left: 0.5rem;
+  }
   .file-table th {
     display: none;
   }
   .file-table tr {
     display: block;
     margin-bottom: 2rem;
-    border-right: 1px solid #dee2e6;
     border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
   }
   .file-table td {
     display: block;
