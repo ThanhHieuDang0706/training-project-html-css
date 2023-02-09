@@ -21,14 +21,11 @@
     ></script>
 
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./dist/css/home-page.css" />
-
+    <script src="./dist/js/home-page.js"></script>
     <title>HTML/CSS Training</title>
   </head>
 
@@ -51,12 +48,18 @@
         </button>
 
         <div class="collapse navbar-bg-grey navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item nav-item-spacing dropdown">
-              <a class="nav-link dropdown-toggle" href="#">
+          <ul class="navbar-nav mr-auto"> 
+            <li  class="nav-item nav-item-spacing dropdown">
+              <a type="button" id="dropdownNew" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle" href="#">
                 <i class="purple-icon fa fa-thin fa-plus"></i>
                 New
               </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownNew">
+                <a class="dropdown-item" id="newFileButton" href="#" data-toggle="modal" data-target="#modal-form">File</a>
+                <a class="dropdown-item" id="newFolderButton" href="#" data-toggle="modal" data-target="#modal-form">Folder</a>
+              </div>
+
             </li>
 
             <li class="nav-item nav-item-spacing dropdown">
@@ -97,7 +100,7 @@
       </nav>
 
       <!-- Wrapper of main content -->
-      <section class="d-sm-block px-sm-2 d-lg-block px-4 py-4">
+      <section id="main-content" class="d-sm-block px-sm-2 d-lg-block px-4 py-4">
         <!-- header -->
         <header class="d-sm-block mb-2 d-lg-block mb-4 mx-4">
           <h2 class="font-weight-light">Documents</h2>
@@ -105,242 +108,10 @@
 
         <!-- table for large screens -->
         <table class="table table-sm file-table">
-          <thead>
-            <tr>
-              <th scope="col">
-                <i class="fa fa-regular fa-file"></i>
-              </th>
-              <th scope="col">
-                Name
-                <i class="fa fa-light fa-caret-down"></i>
-              </th>
-              <th scope="col">
-                Modified
-                <i class="fa fa-light fa-caret-down"></i>
-              </th>
-              <th scope="col">
-                Modified By
-                <i class=" fa fa-light fa-caret-down"></i>
-              </th>
-              <th scope="col">
-                <i class="fa fa-thin fa-plus"></i>
-                Add Column
-              </th>
-            </tr>
-          </thead>
 
-          <tbody>
-            <tr>
-              <td class="table-first-row">
-                <div class="table-row-header col-xs-3">
-                  File Type
-                </div>
-
-                <div class="col-xs-9">
-                  <i class="fa fa-regular fa-folder-open"></i>
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Name
-                </div>
-
-                <div class="col-xs-9">
-                  CAS
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  April 30
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified By
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  Megan Bowen
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="table-first-row">
-                <div class="table-row-header col-xs-3">
-                  File Type
-                </div>
-
-                <div class="col-xs-9">
-                  <i class="text-success fa fa-light fa-file-excel"></i>
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Name
-                </div>
-
-                <div class="col-xs-9">
-                  CoasterAndBargeLoading.xlsx
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  A few seconds ago
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified By
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  Administrator MOD
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="table-first-row">
-                <div class="table-row-header col-xs-3">
-                  File Type
-                </div>
-
-                <div class="col-xs-9">
-                  <i class="text-success fa fa-light fa-file-excel"></i>
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Name
-                </div>
-
-                <div class="col-xs-9">
-                  RevenueByServices.xlsx
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  A few seconds ago
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified By
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  Administrator MOD
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="table-first-row">
-                <div class="table-row-header col-xs-3">
-                  File Type
-                </div>
-
-                <div class="col-xs-9">
-                  <i class="text-success fa fa-light fa-file-excel"></i>
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Name
-                </div>
-
-                <div class="col-xs-9">
-                  RevenueByServices2016.xlsx
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  A few seconds ago
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified By
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  Administrator MOD
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="table-first-row">
-                <div class="table-row-header col-xs-3">
-                  File Type
-                </div>
-
-                <div class="col-xs-9">
-                  <i class="text-success fa fa-light fa-file-excel"></i>
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Name
-                </div>
-
-                <div class="col-xs-9">
-                  RevenueByServices2017.xlsx
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  A few seconds ago
-                </div>
-              </td>
-
-              <td>
-                <div class="table-row-header col-xs-3">
-                  Modified By
-                </div>
-
-                <div class="modified-col col-xs-9">
-                  Administrator MOD
-                </div>
-              </td>
-            </tr>
-          </tbody>
         </table>
+
+
       </section>
     </div>
   </body>
