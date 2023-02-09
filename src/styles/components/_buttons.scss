@@ -1,1 +1,19 @@
 // Button Styles
+
+.circle-button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: $gray-600;
+  color: $white;
+  font-size: $font-size-lg;
+  bottom: $spacer * 2;
+  right: $spacer * 2;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: $gray-300;
+  }
+}

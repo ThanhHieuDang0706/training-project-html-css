@@ -9,12 +9,13 @@ import renderModalForm from '../components/_modal';
 ready(() => {
   // init data
   const folder = Folder.loadTopFolder();
-  const folders = Folder.loadAllFolders();
-  let currentFolderId = folder.id;
-
+  
+  const state = {
+    currentFolderId: 0,
+  };
   // render view
   renderModalForm();
-  renderTable(folder);
+  renderTable(state);
 
   
   // ------------------ Event Listeners --------------------
@@ -60,11 +61,11 @@ ready(() => {
         // create new file
         const newFile = new MyFile(fileName, fileExtension, modified, modifiedBy);
         // save file to current folder
-        Folder.saveFile(newFile, currentFolderId);
+        Folder.saveFile(newFile, state.currentFolderId);
 
         // rerender table
-        const currentFolder = Folder.loadSelectedFolder(currentFolderId);
-        renderTable(currentFolder);
+        const currentFolder = Folder.loadSelectedFolder(state.currentFolderId);
+        renderTable(state);
 
         // close modal form and clear input
         $('#modal-cancel-button').click();
@@ -80,17 +81,26 @@ ready(() => {
           return;
         }
 
-        const newFolder = Folder.createNewFolder(folderName, modified, modifiedBy, currentFolderId);
-        newFolder.save(currentFolderId);
+        const newFolder = Folder.createNewFolder(folderName, modified, modifiedBy, state.currentFolderId);
+        newFolder.save(state.currentFolderId);
 
-        const currentFolder = Folder.loadSelectedFolder(currentFolderId);
-        renderTable(currentFolder);
+        const currentFolder = Folder.loadSelectedFolder(state.currentFolderId);
+        renderTable(state);
         // close modal form and clear input
         $('#modal-cancel-button').click();
         clearInput();
 
       }
     }
+  });
 
+  
+
+  $('#back-button').on('click', () => {
+    const parentFolderId = Folder.loadSelectedFolder(state.currentFolderId).parentFolder as number;
+    console.log(parentFolderId);
+    const parentFolder = Folder.loadSelectedFolder(parentFolderId);
+    state.currentFolderId = parentFolderId;
+    renderTable(state);
   });
 });
