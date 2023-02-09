@@ -16,6 +16,7 @@ ready(() => {
   renderModalForm();
   renderTable(folder);
 
+  
   // ------------------ Event Listeners --------------------
 
   // clicking new file button
@@ -50,7 +51,6 @@ ready(() => {
         
         // check input, not valid then do nothing
         if (!MyFile.validateFileInput(fileNameWithExtension, modified, modifiedBy)) {
-          
           return;
         }
 
@@ -60,20 +60,34 @@ ready(() => {
         // create new file
         const newFile = new MyFile(fileName, fileExtension, modified, modifiedBy);
         // save file to current folder
-
-        
-    
         Folder.saveFile(newFile, currentFolderId);
-        clearInput();
+
         // rerender table
         const currentFolder = Folder.loadSelectedFolder(currentFolderId);
         renderTable(currentFolder);
 
         // close modal form and clear input
         $('#modal-cancel-button').click();
+        clearInput();
       }
       else {
         // create folder and assign parent folder (parent folder will be the current folder)
+        const folderName = $('#name').val() as string;
+        const modified = Date.parse($('#modified').val() as string);
+        const modifiedBy = $('#modifiedBy').val() as string;
+
+        if(!Folder.validateFolderInput(folderName, modified, modifiedBy)) {
+          return;
+        }
+
+        const newFolder = Folder.createNewFolder(folderName, modified, modifiedBy, currentFolderId);
+        newFolder.save(currentFolderId);
+
+        const currentFolder = Folder.loadSelectedFolder(currentFolderId);
+        renderTable(currentFolder);
+        // close modal form and clear input
+        $('#modal-cancel-button').click();
+        clearInput();
 
       }
     }

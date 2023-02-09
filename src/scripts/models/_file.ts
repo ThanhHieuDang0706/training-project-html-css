@@ -1,11 +1,12 @@
 import { isValidFileName } from './../utilities/_file';
-import IFile from '../interface/_file';
+import IFile from '../types/_file';
 
 export default class MyFile implements IFile {
   fileName: string;
   fileExtension: string;
   modified: number;
   modifiedBy: string;
+  isFile: boolean = true;
 
   constructor(fileName: string, fileExtension: string, modified: number, modifiedBy: string) {
     this.fileName = fileName;

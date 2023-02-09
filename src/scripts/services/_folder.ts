@@ -56,6 +56,11 @@ const saveFileToFolder = (file: MyFile, currentFolderId: number): void => {
       return localStorage.setItem(key, folderStringify);
     }
   }
-}
+};
 
-export { getTopLevelFolder, addTopFolder, getSelectedFolder, getAllFolders, saveFileToFolder };
+const overwriteAllFolders = (allFolders: Folder[]): void => {
+  const folderStringify = JSON.stringify(allFolders);
+  return localStorage.setItem(key, folderStringify);
+};
+
+export { getTopLevelFolder, addTopFolder, getSelectedFolder, getAllFolders, saveFileToFolder, overwriteAllFolders };

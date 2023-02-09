@@ -3,6 +3,7 @@ import Folder from '../models/_folder';
 import { folderIcon, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { parseZone } from 'moment';
+import TypeFolder from '../types/_folder';
 
 const tableHeader = `<thead>
 <tr>
@@ -28,27 +29,28 @@ const tableHeader = `<thead>
 </tr>
 </thead>`;
 
-const renderTableCell = (item: Folder | MyFile) => `
+const renderTableCell = (item: any) => `
 <tr>
+
   <td class="table-first-row">
     <div class="table-row-header col-xs-3">
       File Type
     </div>
 
     <div class="col-xs-9">
-      ${item instanceof Folder ? folderIcon : mapFileExtensionToIcon(item.fileExtension)}
+      ${!item.isFile ? folderIcon : mapFileExtensionToIcon(item.fileExtension)}
     </div>
   </td>
 
-  <td id="f-name" data-id=${item instanceof Folder ? item.id : ''} data-type=${
-  item instanceof MyFile ? MyFile : Folder
-} >
+  <td id="f-name" data-id="${!item.isFile ? item.id : ''}" data-type="${
+  item.isFile ? 'file' : 'folder'
+}" >
     <div class="table-row-header col-xs-3">
       Name
     </div>
 
     <div class="col-xs-9">
-      ${item instanceof Folder ? item.folderName : `${item.fileName}.${item.fileExtension}`}
+      ${!item.isFile  ? item.folderName : `${item.fileName}.${item.fileExtension}`}
     </div>
   </td>
 
@@ -68,7 +70,7 @@ const renderTableCell = (item: Folder | MyFile) => `
     </div>
 
     <div class="modified-col col-xs-9">
-      ${item instanceof Folder ? item.modifiedBy : item.modifiedBy}
+      ${!item.isFile ? item.modifiedBy : item.modifiedBy}
     </div>
   </td>
 </tr>
@@ -95,6 +97,16 @@ const renderTable = (folder: Folder) => {
   // add table content to body
   items.forEach(item => {
     tableBody.append(renderTableCell(item));
+  });
+
+  // update style for folder to be clickable
+  tableBody.find('td#f-name').each((index, element) => {
+    const td = $(element);
+    const type = td.data('type');
+    console.log(type);
+    if (type === 'folder') {
+      td.addClass('folder');
+    }
   });
 };
 

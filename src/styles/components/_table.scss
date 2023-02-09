@@ -28,6 +28,14 @@ th:first-child {
     border: 0;
   }
 
+  .folder {
+    cursor: pointer;
+  }
+  
+  .folder:hover {
+    text-decoration: underline;
+  }
+
   tbody tr {
     border-bottom: 1px solid $gray-300;
   }
