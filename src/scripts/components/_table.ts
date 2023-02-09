@@ -42,7 +42,7 @@ const renderTableCell = (item: any) => `
     </div>
   </td>
 
-  <td id="f-name" data-id="${!item.isFile ? item.id : ''}" data-type="${item.isFile ? 'file' : 'folder'}" >
+  <td class="f-name" data-id="${!item.isFile ? item.id : ''}" data-type="${item.isFile ? 'file' : 'folder'}" >
     <div class="table-row-header col-xs-3">
       Name
     </div>
@@ -78,9 +78,7 @@ const renderTable = (state: { currentFolderId: number }) => {
   // TODO: implement code to render table
   const folder = Folder.loadSelectedFolder(state.currentFolderId);
   const { items } = folder;
-
   const table = $('table');
-
   table.empty();
 
   if (items.length === 0) return table.append(`<p class="text-center">There is no item in this folder</p>`);
@@ -99,7 +97,7 @@ const renderTable = (state: { currentFolderId: number }) => {
   });
 
   // update style for folder to be clickable and add event listeners
-  tableBody.find('td#f-name').each((index, element) => {
+  tableBody.find('td.f-name').each((index, element) => {
     const td = $(element);
     const type = td.data('type');
     if (type === 'folder') {
@@ -110,14 +108,14 @@ const renderTable = (state: { currentFolderId: number }) => {
   if (state.currentFolderId !== 0) {
     $('#back-button').removeClass('invisible');
   } else {
-    $('#back-button').addClass('invisible');
+    $('#back-button').addClass('invisble');
   }
 
   // add event listeners
-  $('#f-name').each((_, element) => {
+  $('.f-name').each((_, element) => {
     const td = $(element);
     const type = td.data('type');
-
+    const id = td.data('id');
     if (type === 'folder') {
       td.on('click', () => {
         const folderId = td.data('id');

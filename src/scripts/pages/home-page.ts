@@ -7,7 +7,7 @@ import MyFile from '../models/_file';
 import renderModalForm from '../components/_modal';
 
 ready(() => {
-  // init data
+  // init data, call this to make sure that there is data in local storage
   const folder = Folder.loadTopFolder();
   
   const state = {
@@ -64,7 +64,6 @@ ready(() => {
         Folder.saveFile(newFile, state.currentFolderId);
 
         // rerender table
-        const currentFolder = Folder.loadSelectedFolder(state.currentFolderId);
         renderTable(state);
 
         // close modal form and clear input
@@ -98,8 +97,6 @@ ready(() => {
 
   $('#back-button').on('click', () => {
     const parentFolderId = Folder.loadSelectedFolder(state.currentFolderId).parentFolder as number;
-    console.log(parentFolderId);
-    const parentFolder = Folder.loadSelectedFolder(parentFolderId);
     state.currentFolderId = parentFolderId;
     renderTable(state);
   });
