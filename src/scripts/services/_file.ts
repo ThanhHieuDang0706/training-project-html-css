@@ -57,3 +57,21 @@ export const deleteFileFromFolder = (id: number, folderId: number): void => {
   }
   return;
 };
+
+
+export const saveFiles = (files: MyFile[]): void => {
+  return localStorage.setItem(key, JSON.stringify(files));
+};
+
+export const saveUpdatedFileToFolder = (file: MyFile, currentFolderId: number): void => {
+  const folders = getAllFolders();
+  const folderIndex = folders.findIndex(f => f.id === currentFolderId);
+  const selectedFolder = folders[folderIndex];
+  
+  // update file in that folder
+  const { items } = selectedFolder;
+  const fileIndex = items.findIndex(f => f.isFile && f.id === file.id);
+  items[fileIndex] = file;
+  selectedFolder.items = items;
+  overwriteAllFolders(folders);
+};

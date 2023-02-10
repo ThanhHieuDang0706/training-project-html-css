@@ -1,6 +1,6 @@
 import { isValidFileName } from './../utilities/_file';
-import IFile from '../types/_file';
-import { getAllFiles, saveFile, deleteFileFromFolder } from '../services/_file';
+import IFile, { FileUpdate } from '../types/_file';
+import { getAllFiles, saveFile, deleteFileFromFolder, saveFiles, saveUpdatedFileToFolder } from '../services/_file';
 export default class MyFile implements IFile {
   id: number;
   fileName: string;
@@ -42,6 +42,18 @@ export default class MyFile implements IFile {
 
   static deleteFile = (id: number, folderId: number) => {
     deleteFileFromFolder(id, folderId);
+  }
+
+  static updateFile = (id: number, changes: FileUpdate, folderId: number) => {
+    // save the file to file list 
+    const allFiles = getAllFiles();
+    const fileIndex = allFiles.findIndex((file: MyFile) => file.id === id);
+    const newFile = new MyFile(id, changes.fileName, changes.fileExtension, changes.modified, changes.modifiedBy);
+    allFiles[fileIndex] = newFile;
+    saveFiles(allFiles);
+
+    // update the file in the folder
+    saveUpdatedFileToFolder(newFile, folderId);
   }
 
   saveFile = (): void => {

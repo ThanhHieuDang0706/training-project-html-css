@@ -8,4 +8,5 @@ type Folder = {
   modified: number;
   modifiedBy: string;
 };
+
 export default Folder;

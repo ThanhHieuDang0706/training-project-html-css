@@ -12,6 +12,7 @@ export const clearInput = () => {
   $('#name').val('');
   $('#modified').val('');
   $('#modifiedBy').val('');
+  $('#modal-title').removeAttr('data-id');
 };
 
 export default ready;
