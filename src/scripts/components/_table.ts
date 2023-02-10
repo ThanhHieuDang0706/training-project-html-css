@@ -108,12 +108,13 @@ const renderTable = async (state: { currentFolderId: number }) => {
   const folder = Folder.loadSelectedFolder(state.currentFolderId);
   const { items } = folder;
   const table = $('table');
-  table.empty();
+  
 
   // add loading animation
   renderSpinner();
 
   setTimeout(() => {
+    table.empty();
     removeSpinner();
     if (items.length === 0) return table.append(`<p class="text-center">There is no item in this folder</p>`);
     // add table header
