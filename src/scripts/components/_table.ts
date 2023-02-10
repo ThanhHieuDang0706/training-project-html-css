@@ -3,7 +3,6 @@ import Folder from '../models/_folder';
 import { folderIcon, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { parseZone } from 'moment';
-import TypeFolder from '../types/_folder';
 
 const tableHeader = `<thead>
 <tr>
@@ -21,6 +20,10 @@ const tableHeader = `<thead>
   <th scope="col">
     Modified By
     <i class=" fa fa-light fa-caret-down"></i>
+  </th>
+  <th scope="col">
+    Actions
+    <i class="fa fa-light fa-caret-down"></i>
   </th>
   <th scope="col">
     <i class="fa fa-thin fa-plus"></i>
@@ -71,6 +74,23 @@ const renderTableCell = (item: any) => `
       ${!item.isFile ? item.modifiedBy : item.modifiedBy}
     </div>
   </td>
+
+  <td>
+     <div class="table-row-header col-xs-3">
+      Actions
+    </div>
+
+    <div class="modified-col col-xs-9">
+      <div class="btn-group" role="group" aria-label="btn actions">
+        <button data-action="edit" data-id="${item.id}" data-type="${item.isFile ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-primary">
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button data-action="delete" data-id="${item.id}" data-type="${item.isFile ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-danger">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  </td>
 </tr>
 `;
 
@@ -111,17 +131,48 @@ const renderTable = (state: { currentFolderId: number }) => {
     $('#back-button').addClass('invisible');
   }
 
-  // add event listeners
+  // add event listeners when clikcing folder => change current folder
   $('.f-name').each((_, element) => {
     const td = $(element);
     const type = td.data('type');
-    const id = td.data('id');
+
     if (type === 'folder') {
       td.on('click', () => {
         const folderId = td.data('id');
         state.currentFolderId = folderId;
         renderTable(state);
       });
+    }
+  });
+
+  // add event listeners when clicking edit button
+  $('button[data-action="edit"]').each((_, element) => {
+    const id = parseInt($(element).data('id'));
+    const type = $(element).data('type');
+
+    element.onclick = () => {
+      if (type === 'file') {
+        renderTable(state);
+      }
+      else if (type === 'folder') {
+
+      }
+    }
+  });
+
+  // add event listeners when clicking delete button
+  $('button[data-action="delete"]').each((_, element) => {
+    const id = parseInt($(element).data('id'));
+    const type = $(element).data('type');
+    element.onclick = () => {
+      if (type === 'file') {
+        MyFile.deleteFile(id, state.currentFolderId);
+        renderTable(state);
+      }
+      else if (type === 'folder') {
+        Folder.deleteFolder(id);
+        renderTable(state);
+      }
     }
   });
 };

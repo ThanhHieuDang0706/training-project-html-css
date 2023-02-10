@@ -1,6 +1,6 @@
 import { isValidFileName } from './../utilities/_file';
 import IFile from '../types/_file';
-import { getAllFiles, saveFile } from '../services/_file';
+import { getAllFiles, saveFile, deleteFileFromFolder } from '../services/_file';
 export default class MyFile implements IFile {
   id: number;
   fileName: string;
@@ -22,7 +22,7 @@ export default class MyFile implements IFile {
   };
 
   static createNewFile = (fileName: string, fileExtension: string, modified: number, modifiedBy: string) => {
-    const maxFileId = Math.max(0, ...MyFile.loadAllFiles().map((file: MyFile) => file.id));
+    const maxFileId = Math.max(0, ...MyFile.loadAllFiles().map((file: MyFile) => file.id)); // simulate auto increment id by adding the largest id to 1
     const newFile = new MyFile(maxFileId + 1, fileName, fileExtension, modified, modifiedBy);
     return newFile;
   };
@@ -35,6 +35,10 @@ export default class MyFile implements IFile {
     }
     return true;
   };
+
+  static deleteFile = (id: number, folderId: number) => {
+    deleteFileFromFolder(id, folderId);
+  }
 
   saveFile = (): void => {
     return saveFile(this);
