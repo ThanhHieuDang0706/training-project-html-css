@@ -15,7 +15,7 @@ export const fileExtensionToIconMapper = {
 export const defaultFileIcon = '<i class="text-secondary fa fa-light fa-file"></i>';
 export const folderIcon = '<i class="fa fa-regular fa-folder-open"></i>';
 
-export const mapFileExtensionToIcon = (fileExtension: string) => {
+export const mapFileExtensionToIcon = (fileExtension: string): string => {
   return fileExtensionToIconMapper[fileExtension as keyof object] || defaultFileIcon;
 };
 

@@ -24,7 +24,7 @@ ready(() => {
 
   // clicking new file button
   $('#newFileButton').on('click', () => {
-    
+    clearInput();
     $("label[for='name']").text('File name');
     $('#modal-title').text('Create new file');
     $('#modal-ok-button').text('Create');
@@ -33,6 +33,7 @@ ready(() => {
 
   // clicking new folder button
   $('#newFolderButton').on('click', () => {
+    clearInput();
     $("label[for='name']").text('Folder name');
     $('#modal-title').text('Create new folder');
     $('#modal-ok-button').text('Create');
