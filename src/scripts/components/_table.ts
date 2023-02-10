@@ -108,7 +108,7 @@ const renderTable = (state: { currentFolderId: number }) => {
   if (state.currentFolderId !== 0) {
     $('#back-button').removeClass('invisible');
   } else {
-    $('#back-button').addClass('invisble');
+    $('#back-button').addClass('invisible');
   }
 
   // add event listeners
