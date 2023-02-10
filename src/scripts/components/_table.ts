@@ -88,9 +88,7 @@ const renderTableCell = (item: any) => `
 }" type="button" class="btn btn-sm btn-primary">
           <i class="fa fa-pencil"></i>
         </button>
-        <button data-action="delete" data-id="${item.id}" data-type="${
-  item.isFile ? 'file' : 'folder'
-}" type="button" class="btn btn-sm btn-danger">
+        <button data-action="delete" data-id="${item.id}" data-type="${item.isFile ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-danger">
           <i class="fa fa-trash"></i>
         </button>
       </div>
@@ -153,22 +151,23 @@ const renderTable = (state: { currentFolderId: number }) => {
   $('button[data-action="edit"]').each((_, element) => {
     const id = parseInt($(element).data('id'));
     const type = $(element).data('type');
-    
+
     element.onclick = () => {
       if (type === 'file') {
-        $("label[for='name']").text('Folder name');
-        $('#modal-title').text('Edit folder');
-        $('#modal-ok-button').text('Save');
-        $('#modal-ok-button').attr('data-action', 'edit');
-        const file = MyFile.getFileById(id);
-        fillInput(file);
-      } else if (type === 'folder') {
-        $("label[for='name']").text('File name');
+        $("label[for='name']").text('file name');
         $('#modal-title').text('Edit file');
         $('#modal-ok-button').text('Save');
         $('#modal-ok-button').attr('data-action', 'edit');
+        const file = MyFile.getFileById(id);
+
+        fillInput(file, id);
+      } else if (type === 'folder') {
+        $("label[for='name']").text('folder name');
+        $('#modal-title').text('Edit folder');
+        $('#modal-ok-button').text('Save');
+        $('#modal-ok-button').attr('data-action', 'edit');
         const folder = Folder.loadSelectedFolder(id);
-        fillInput(folder);
+        fillInput(folder, id);
       }
     };
   });
