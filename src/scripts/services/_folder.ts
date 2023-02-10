@@ -1,5 +1,6 @@
 import MyFile from '../models/_file';
 import Folder from '../models/_folder';
+import { deleteFileFromFolder } from './_file';
 
 const key = 'PrecioFolders';
 
@@ -18,7 +19,7 @@ const addTopFolder = (): void => {
 };
 
 const getSelectedFolder = (id: number): Folder | undefined => {
-  // load folder with id = id
+  // load folder with by id
   const folders = localStorage.getItem(key);
   if (folders) {
     const parsedFolders = JSON.parse(folders) as Folder[];
@@ -63,4 +64,38 @@ const overwriteAllFolders = (allFolders: Folder[]): void => {
   return localStorage.setItem(key, folderStringify);
 };
 
-export { getTopLevelFolder, addTopFolder, getSelectedFolder, getAllFolders, saveFileToFolder, overwriteAllFolders };
+const deleteFolderFromLocalStorage = (id: number): void => {
+  const folders = getAllFolders();
+  const folderIndex = folders.findIndex(f => f.id === id);
+
+  if (folderIndex === -1) return;
+  const folderToDelete = folders[folderIndex];
+  const { items } = folderToDelete;
+
+  // delete all files and folders
+  items.forEach(item => {
+    if (item.isFile) {
+      deleteFileFromFolder(item.id, id);
+    } else {
+      deleteFolderFromLocalStorage(item.id);
+    }
+  });
+
+  const foldersAfterDelete = getAllFolders();
+  foldersAfterDelete.splice(folderIndex, 1);  
+  const parentIndex = foldersAfterDelete.findIndex(f => f.id === folderToDelete.parentFolder);
+  const parentFolder = foldersAfterDelete[parentIndex];
+  parentFolder.items = parentFolder.items.filter(f => f.isFile || (!f.isFile && f.id !== folderToDelete.id));
+  overwriteAllFolders(foldersAfterDelete);
+  
+};
+
+export {
+  getTopLevelFolder,
+  addTopFolder,
+  getSelectedFolder,
+  getAllFolders,
+  saveFileToFolder,
+  overwriteAllFolders,
+  deleteFolderFromLocalStorage,
+};

@@ -6,6 +6,7 @@ import {
   getAllFolders,
   saveFileToFolder,
   overwriteAllFolders,
+  deleteFolderFromLocalStorage
 } from '../services/_folder';
 import MyFile from './_file';
 
@@ -80,10 +81,6 @@ export default class Folder implements IFolder {
     // add new file to currentFolder in local storage
   }
 
-  saveUpdatedFile (file: MyFile, currentFolderId: number): void {
-    // save updated file to currentFolder in local storage
-  }
-
   save = (currentFolderId: number): void => {
     // save this folder to local storage
     const allFolders = Folder.loadAllFolders();
@@ -114,7 +111,8 @@ export default class Folder implements IFolder {
   };
 
   static deleteFolder = (folderId: number): void => {
-    // delete the sub folders and that folder from local storage
+    // delete the sub folders and filees and that folder from local storage
+    deleteFolderFromLocalStorage(folderId);
   };
 
   static validateFolderInput = (folderName: string, modified: number, modifiedBy: string): boolean => {

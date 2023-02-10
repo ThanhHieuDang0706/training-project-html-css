@@ -82,10 +82,14 @@ const renderTableCell = (item: any) => `
 
     <div class="modified-col col-xs-9">
       <div class="btn-group" role="group" aria-label="btn actions">
-        <button data-action="edit" data-id="${item.id}" data-type="${item.isFile ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-primary">
+        <button data-action="edit" data-id="${item.id}" data-type="${
+  item.isFile ? 'file' : 'folder'
+}" type="button" class="btn btn-sm btn-primary">
           <i class="fa fa-pencil"></i>
         </button>
-        <button data-action="delete" data-id="${item.id}" data-type="${item.isFile ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-danger">
+        <button data-action="delete" data-id="${item.id}" data-type="${
+  item.isFile ? 'file' : 'folder'
+}" type="button" class="btn btn-sm btn-danger">
           <i class="fa fa-trash"></i>
         </button>
       </div>
@@ -95,7 +99,12 @@ const renderTableCell = (item: any) => `
 `;
 
 const renderTable = (state: { currentFolderId: number }) => {
-  // TODO: implement code to render table
+  if (state.currentFolderId === 0) {
+    $('#back-button').hide();
+  } else {
+    $('#back-button').show();
+  }
+
   const folder = Folder.loadSelectedFolder(state.currentFolderId);
   const { items } = folder;
   const table = $('table');
@@ -117,19 +126,13 @@ const renderTable = (state: { currentFolderId: number }) => {
   });
 
   // update style for folder to be clickable and add event listeners
-  tableBody.find('td.f-name').each((index, element) => {
+  tableBody.find('td.f-name').each((_, element) => {
     const td = $(element);
     const type = td.data('type');
     if (type === 'folder') {
       td.addClass('folder');
     }
   });
-
-  if (state.currentFolderId !== 0) {
-    $('#back-button').removeClass('invisible');
-  } else {
-    $('#back-button').addClass('invisible');
-  }
 
   // add event listeners when clikcing folder => change current folder
   $('.f-name').each((_, element) => {
@@ -138,9 +141,9 @@ const renderTable = (state: { currentFolderId: number }) => {
 
     if (type === 'folder') {
       td.on('click', () => {
-        const folderId = td.data('id');
+        const folderId = parseInt(td.data('id'));
         state.currentFolderId = folderId;
-        renderTable(state);
+        return renderTable(state);
       });
     }
   });
@@ -152,12 +155,10 @@ const renderTable = (state: { currentFolderId: number }) => {
 
     element.onclick = () => {
       if (type === 'file') {
-        renderTable(state);
+        return renderTable(state);
+      } else if (type === 'folder') {
       }
-      else if (type === 'folder') {
-
-      }
-    }
+    };
   });
 
   // add event listeners when clicking delete button
@@ -167,13 +168,12 @@ const renderTable = (state: { currentFolderId: number }) => {
     element.onclick = () => {
       if (type === 'file') {
         MyFile.deleteFile(id, state.currentFolderId);
-        renderTable(state);
-      }
-      else if (type === 'folder') {
+        return renderTable(state);
+      } else if (type === 'folder') {
         Folder.deleteFolder(id);
-        renderTable(state);
+        return renderTable(state);
       }
-    }
+    };
   });
 };
 
