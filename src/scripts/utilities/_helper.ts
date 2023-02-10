@@ -1,4 +1,5 @@
 import $ from 'jquery';
+
 const ready = (fn: () => void) => {
   if (document.readyState !== 'loading') {
     fn();

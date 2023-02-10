@@ -3,6 +3,7 @@ import Folder from '../models/_folder';
 import { folderIcon, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { parseZone } from 'moment';
+import { fillInput } from './_modal';
 
 const tableHeader = `<thead>
 <tr>
@@ -82,7 +83,7 @@ const renderTableCell = (item: any) => `
 
     <div class="modified-col col-xs-9">
       <div class="btn-group" role="group" aria-label="btn actions">
-        <button data-action="edit" data-id="${item.id}" data-type="${
+        <button data-toggle="modal" data-target="#modal-form" data-action="edit" data-id="${item.id}" data-type="${
   item.isFile ? 'file' : 'folder'
 }" type="button" class="btn btn-sm btn-primary">
           <i class="fa fa-pencil"></i>
@@ -152,11 +153,22 @@ const renderTable = (state: { currentFolderId: number }) => {
   $('button[data-action="edit"]').each((_, element) => {
     const id = parseInt($(element).data('id'));
     const type = $(element).data('type');
-
+    
     element.onclick = () => {
       if (type === 'file') {
-        return renderTable(state);
+        $("label[for='name']").text('Folder name');
+        $('#modal-title').text('Edit folder');
+        $('#modal-ok-button').text('Save');
+        $('#modal-ok-button').attr('data-action', 'edit');
+        const file = MyFile.getFileById(id);
+        fillInput(file);
       } else if (type === 'folder') {
+        $("label[for='name']").text('File name');
+        $('#modal-title').text('Edit file');
+        $('#modal-ok-button').text('Save');
+        $('#modal-ok-button').attr('data-action', 'edit');
+        const folder = Folder.loadSelectedFolder(id);
+        fillInput(folder);
       }
     };
   });

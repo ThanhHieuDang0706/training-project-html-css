@@ -1,3 +1,4 @@
+
 const modal = () => `<!-- New File Modal -->
 <div
   class="modal fade"
@@ -43,6 +44,12 @@ const modal = () => `<!-- New File Modal -->
 
 const renderModalForm = () => {
   $("#main-content").append(modal);
+}
+
+export const fillInput = (item: any) => {
+  $("#name").val(item.isFile ? `${item.fileName}.${item.fileExtension}` : item.folderName);
+  $("#modified").val(new Date(item.modified).toISOString().slice(0, 16));
+  $("#modifiedBy").val(item.modifiedBy);
 }
 
 export default renderModalForm;

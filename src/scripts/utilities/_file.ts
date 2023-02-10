@@ -1,11 +1,11 @@
 export const isValidFileName = (fileName: string): boolean => {
-  let rg1=/^[^\\/:\*\?"<>\|]+$/; // forbidden characters \ / : * ? " < > |
-  let rg2=/^\./; // cannot start with dot (.)
-  let rg3=/^(nul|prn|con|lpt[0-9]|com[0-9])(\.|$)/i; // forbidden file names
-  return rg1.test(fileName)&&!rg2.test(fileName)&&!rg3.test(fileName);
-}
+  let rg1 = /^[^\\/:\*\?"<>\|]+$/; // forbidden characters \ / : * ? " < > |
+  let rg2 = /^\./; // cannot start with dot (.)
+  let rg3 = /^(nul|prn|con|lpt[0-9]|com[0-9])(\.|$)/i; // forbidden file names
+  return rg1.test(fileName) && !rg2.test(fileName) && !rg3.test(fileName);
+};
 
-export const fileExtensionToIconMapper= {
+export const fileExtensionToIconMapper = {
   xlsx: '<i class="text-success fa fa-light fa-file-excel"></i>',
   xls: '<i class="text-success fa fa-light fa-file-excel"></i>',
   docx: '<i class="text-primary fa fa-light fa-file-word"></i>',
@@ -20,8 +20,8 @@ export const mapFileExtensionToIcon = (fileExtension: string) => {
 };
 
 export const parseFileExtension = (fileName: string) => {
-  const fileSplit = fileName.split(".");
-  if (fileSplit.length === 1) return "";
+  const fileSplit = fileName.split('.');
+  if (fileSplit.length === 1) return '';
   const fileExtension = fileSplit[fileSplit.length - 1];
-  return fileExtension ? fileExtension.toLowerCase() : "";
+  return fileExtension ? fileExtension.toLowerCase() : '';
 };

@@ -16,8 +16,6 @@ ready(() => {
   // render view
   renderModalForm();
   renderTable(state);
-
-  
   // ------------------ Event Listeners --------------------
 
   // clicking new file button

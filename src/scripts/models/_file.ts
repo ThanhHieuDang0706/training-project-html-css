@@ -36,6 +36,10 @@ export default class MyFile implements IFile {
     return true;
   };
 
+  static getFileById = (id: number): MyFile => {
+    return MyFile.loadAllFiles().find((file: MyFile) => file.id === id) as MyFile;
+  }
+
   static deleteFile = (id: number, folderId: number) => {
     deleteFileFromFolder(id, folderId);
   }
