@@ -134,6 +134,18 @@ ready(() => {
         clearInput();
 
       } else if (type === 'folder') {
+        const folderName = $('#name').val() as string;
+        const modified = Date.parse($('#modified').val() as string);
+        const modifiedBy = $('#modifiedBy').val() as string;
+
+        if (!Folder.validateFolderInput(folderName, modified, modifiedBy)) {
+          return;
+        }
+
+        Folder.updateFolder(id, folderName, modified, modifiedBy, state.currentFolderId);
+        renderTable(state);
+        $('#modal-cancel-button').click();
+        clearInput();
       }
     }
   });

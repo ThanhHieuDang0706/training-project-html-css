@@ -90,6 +90,26 @@ const deleteFolderFromLocalStorage = (id: number): void => {
   
 };
 
+const updateFolderAndSubFolder = (folderId: number, folderName: string, modified: number, modifiedBy: string, currentFolderId: number) => {
+  // update folder list
+  const allFolders = Folder.loadAllFolders();
+  const index = allFolders.findIndex(folder => folder.id === folderId);
+  allFolders[index].folderName = folderName;
+  allFolders[index].modified = modified;
+  allFolders[index].modifiedBy = modifiedBy;
+
+  // update current folder
+  const currentFolderIndex = allFolders.findIndex(folder => folder.id === currentFolderId);
+  const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(folder => !folder.isFile && folder.id === folderId);
+
+  const subFolder = allFolders[currentFolderIndex].items[subFolderIndex] as Folder;
+  subFolder.folderName = folderName;
+  subFolder.modified = modified;
+  subFolder.modifiedBy = modifiedBy;
+
+  overwriteAllFolders(allFolders);
+}
+
 export {
   getTopLevelFolder,
   addTopFolder,
@@ -98,4 +118,5 @@ export {
   saveFileToFolder,
   overwriteAllFolders,
   deleteFolderFromLocalStorage,
+  updateFolderAndSubFolder
 };

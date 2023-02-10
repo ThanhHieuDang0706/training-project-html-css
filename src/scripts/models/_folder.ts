@@ -6,7 +6,8 @@ import {
   getAllFolders,
   saveFileToFolder,
   overwriteAllFolders,
-  deleteFolderFromLocalStorage
+  deleteFolderFromLocalStorage,
+  updateFolderAndSubFolder,
 } from '../services/_folder';
 import MyFile from './_file';
 
@@ -21,14 +22,7 @@ export default class Folder implements IFolder {
 
   public static initialFolder = new Folder(0, 'top', [], null, Date.now(), '');
 
-  constructor(
-    id: number,
-    folderName: string,
-    items: Array<MyFile | Folder>,
-    parentFolder: number | null,
-    modified: number,
-    modifiedBy: string,
-  ) {
+  constructor(id: number, folderName: string, items: Array<MyFile | Folder>, parentFolder: number | null, modified: number, modifiedBy: string) {
     this.id = id;
     this.folderName = folderName;
     this.items = items;
@@ -59,12 +53,7 @@ export default class Folder implements IFolder {
     return selectedFolder;
   };
 
-  static createNewFolder = (
-    folderName: string,
-    modified: number,
-    modifiedBy: string,
-    parentFolderId: number,
-  ): Folder => {
+  static createNewFolder = (folderName: string, modified: number, modifiedBy: string, parentFolderId: number): Folder => {
     // create new folder with folderName and parentFolderId
     const largestId = Math.max(...Folder.loadAllFolders().map(folder => folder.id)); // gen new id by adding the largest id to 1
     const newFolder = new Folder(largestId + 1, folderName, [], parentFolderId, modified, modifiedBy);
@@ -96,9 +85,7 @@ export default class Folder implements IFolder {
       // update
       allFolders[index] = this;
 
-      const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(
-        folder => folder instanceof Folder && folder.id === this.id,
-      );
+      const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(folder => folder instanceof Folder && folder.id === this.id);
 
       if (subFolderIndex !== -1) {
         allFolders[currentFolderIndex].items[subFolderIndex] = this;
@@ -109,6 +96,10 @@ export default class Folder implements IFolder {
       overwriteAllFolders(allFolders);
     }
   };
+
+  static updateFolder(folderId: number, folderName: string, modified: number, modifiedBy: string, currentFolderId: number): void {
+    updateFolderAndSubFolder(folderId, folderName, modified, modifiedBy, currentFolderId);
+  }
 
   static deleteFolder = (folderId: number): void => {
     // delete the sub folders and filees and that folder from local storage
