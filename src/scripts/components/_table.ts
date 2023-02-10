@@ -4,6 +4,7 @@ import { folderIcon, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { parseZone } from 'moment';
 import { fillInput } from './_modal';
+import renderSpinner, { removeSpinner } from './_loading';
 
 const tableHeader = `<thead>
 <tr>
@@ -97,7 +98,7 @@ const renderTableCell = (item: any) => `
 </tr>
 `;
 
-const renderTable = (state: { currentFolderId: number }) => {
+const renderTable = async (state: { currentFolderId: number }) => {
   if (state.currentFolderId === 0) {
     $('#back-button').hide();
   } else {
@@ -109,83 +110,89 @@ const renderTable = (state: { currentFolderId: number }) => {
   const table = $('table');
   table.empty();
 
-  if (items.length === 0) return table.append(`<p class="text-center">There is no item in this folder</p>`);
-  // add table header
-  table.append(tableHeader);
+  // add loading animation
+  renderSpinner();
 
-  // add empty table body
-  table.append(`<tbody></tbody>`);
+  setTimeout(() => {
+    removeSpinner();
+    if (items.length === 0) return table.append(`<p class="text-center">There is no item in this folder</p>`);
+    // add table header
+    table.append(tableHeader);
 
-  // get table body
-  const tableBody = table.find('tbody');
+    // add empty table body
+    table.append(`<tbody></tbody>`);
 
-  // add table content to body
-  items.forEach(item => {
-    tableBody.append(renderTableCell(item));
-  });
+    // get table body
+    const tableBody = table.find('tbody');
 
-  // update style for folder to be clickable and add event listeners
-  tableBody.find('td.f-name').each((_, element) => {
-    const td = $(element);
-    const type = td.data('type');
-    if (type === 'folder') {
-      td.addClass('folder');
-    }
-  });
+    // add table content to body
+    items.forEach(item => {
+      tableBody.append(renderTableCell(item));
+    });
 
-  // add event listeners when clikcing folder => change current folder
-  $('.f-name').each((_, element) => {
-    const td = $(element);
-    const type = td.data('type');
-
-    if (type === 'folder') {
-      td.on('click', () => {
-        const folderId = parseInt(td.data('id'));
-        state.currentFolderId = folderId;
-        return renderTable(state);
-      });
-    }
-  });
-
-  // add event listeners when clicking edit button
-  $('button[data-action="edit"]').each((_, element) => {
-    const id = parseInt($(element).data('id'));
-    const type = $(element).data('type');
-
-    element.onclick = () => {
-      if (type === 'file') {
-        $("label[for='name']").text('file name');
-        $('#modal-title').text('Edit file');
-        $('#modal-ok-button').text('Save');
-        $('#modal-ok-button').attr('data-action', 'edit');
-        const file = MyFile.getFileById(id);
-
-        fillInput(file, id);
-      } else if (type === 'folder') {
-        $("label[for='name']").text('folder name');
-        $('#modal-title').text('Edit folder');
-        $('#modal-ok-button').text('Save');
-        $('#modal-ok-button').attr('data-action', 'edit');
-        const folder = Folder.loadSelectedFolder(id);
-        fillInput(folder, id);
+    // update style for folder to be clickable and add event listeners
+    tableBody.find('td.f-name').each((_, element) => {
+      const td = $(element);
+      const type = td.data('type');
+      if (type === 'folder') {
+        td.addClass('folder');
       }
-    };
-  });
+    });
 
-  // add event listeners when clicking delete button
-  $('button[data-action="delete"]').each((_, element) => {
-    const id = parseInt($(element).data('id'));
-    const type = $(element).data('type');
-    element.onclick = () => {
-      if (type === 'file') {
-        MyFile.deleteFile(id, state.currentFolderId);
-        return renderTable(state);
-      } else if (type === 'folder') {
-        Folder.deleteFolder(id);
-        return renderTable(state);
+    // add event listeners when clikcing folder => change current folder
+    $('.f-name').each((_, element) => {
+      const td = $(element);
+      const type = td.data('type');
+
+      if (type === 'folder') {
+        td.on('click', () => {
+          const folderId = parseInt(td.data('id'));
+          state.currentFolderId = folderId;
+          return renderTable(state);
+        });
       }
-    };
-  });
+    });
+
+    // add event listeners when clicking edit button
+    $('button[data-action="edit"]').each((_, element) => {
+      const id = parseInt($(element).data('id'));
+      const type = $(element).data('type');
+
+      element.onclick = () => {
+        if (type === 'file') {
+          $("label[for='name']").text('file name');
+          $('#modal-title').text('Edit file');
+          $('#modal-ok-button').text('Save');
+          $('#modal-ok-button').attr('data-action', 'edit');
+          const file = MyFile.getFileById(id);
+
+          fillInput(file, id);
+        } else if (type === 'folder') {
+          $("label[for='name']").text('folder name');
+          $('#modal-title').text('Edit folder');
+          $('#modal-ok-button').text('Save');
+          $('#modal-ok-button').attr('data-action', 'edit');
+          const folder = Folder.loadSelectedFolder(id);
+          fillInput(folder, id);
+        }
+      };
+    });
+
+    // add event listeners when clicking delete button
+    $('button[data-action="delete"]').each((_, element) => {
+      const id = parseInt($(element).data('id'));
+      const type = $(element).data('type');
+      element.onclick = () => {
+        if (type === 'file') {
+          MyFile.deleteFile(id, state.currentFolderId);
+          return renderTable(state);
+        } else if (type === 'folder') {
+          Folder.deleteFolder(id);
+          return renderTable(state);
+        }
+      };
+    });
+  }, Math.random() * 1000);
 };
 
 export default renderTable;
