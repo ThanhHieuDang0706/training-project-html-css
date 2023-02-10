@@ -8,7 +8,7 @@ import renderModalForm from '../components/_modal';
 
 ready(() => {
   // init data, call this to make sure that there is data in local storage
-  const folder = Folder.loadTopFolder();
+  Folder.loadTopFolder();
   
   const state = {
     currentFolderId: 0,
@@ -59,7 +59,7 @@ ready(() => {
         const fileName = fileNameWithExtension.replace(`.${fileExtension}`, '');
 
         // create new file
-        const newFile = new MyFile(fileName, fileExtension, modified, modifiedBy);
+        const newFile =  MyFile.createNewFile(fileName, fileExtension, modified, modifiedBy);
         // save file to current folder
         Folder.saveFile(newFile, state.currentFolderId);
 
@@ -83,7 +83,6 @@ ready(() => {
         const newFolder = Folder.createNewFolder(folderName, modified, modifiedBy, state.currentFolderId);
         newFolder.save(state.currentFolderId);
 
-        const currentFolder = Folder.loadSelectedFolder(state.currentFolderId);
         renderTable(state);
         // close modal form and clear input
         $('#modal-cancel-button').click();

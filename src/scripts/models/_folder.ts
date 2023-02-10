@@ -17,7 +17,7 @@ export default class Folder implements IFolder {
   modified: number;
   modifiedBy: string;
   isFile: boolean = false;
-  
+
   public static initialFolder = new Folder(0, 'top', [], null, Date.now(), '');
 
   constructor(
@@ -72,11 +72,16 @@ export default class Folder implements IFolder {
 
   static saveFile(file: MyFile, currentFolderId: number): void {
     // save file to currentFolder in local storage
+    file.saveFile();
     return saveFileToFolder(file, currentFolderId);
   }
 
   static addNewFile(newFile: MyFile, currentFolderId: number): void {
     // add new file to currentFolder in local storage
+  }
+
+  saveUpdatedFile (file: MyFile, currentFolderId: number): void {
+    // save updated file to currentFolder in local storage
   }
 
   save = (currentFolderId: number): void => {
@@ -94,7 +99,9 @@ export default class Folder implements IFolder {
       // update
       allFolders[index] = this;
 
-      const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(folder => folder instanceof Folder && folder.id === this.id);
+      const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(
+        folder => folder instanceof Folder && folder.id === this.id,
+      );
 
       if (subFolderIndex !== -1) {
         allFolders[currentFolderIndex].items[subFolderIndex] = this;

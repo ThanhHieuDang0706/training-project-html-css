@@ -1,4 +1,5 @@
 type MyFile = {
+  id: number;
   fileName: string;
   fileExtension: string;
   modified: number;
