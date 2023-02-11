@@ -10,7 +10,7 @@ const getTopLevelFolder = (): Folder | undefined | null => {
     const parsedFolders = JSON.parse(folders) as Folder[];
     const topLevelFolder = parsedFolders.find(f => f.parentFolder === null);
     return topLevelFolder;
-  } else return null;
+  }
 };
 
 const addTopFolder = (): void => {
@@ -57,6 +57,7 @@ const saveFileToFolder = (file: MyFile, currentFolderId: number): void => {
       return localStorage.setItem(key, folderStringify);
     }
   }
+  return undefined;
 };
 
 const overwriteAllFolders = (allFolders: Folder[]): void => {
@@ -82,12 +83,11 @@ const deleteFolderFromLocalStorage = (id: number): void => {
   });
 
   const foldersAfterDelete = getAllFolders();
-  foldersAfterDelete.splice(folderIndex, 1);  
+  foldersAfterDelete.splice(folderIndex, 1);
   const parentIndex = foldersAfterDelete.findIndex(f => f.id === folderToDelete.parentFolder);
   const parentFolder = foldersAfterDelete[parentIndex];
   parentFolder.items = parentFolder.items.filter(f => f.isFile || (!f.isFile && f.id !== folderToDelete.id));
   overwriteAllFolders(foldersAfterDelete);
-  
 };
 
 const updateFolderAndSubFolder = (folderId: number, folderName: string, modified: number, modifiedBy: string, currentFolderId: number) => {
@@ -108,7 +108,7 @@ const updateFolderAndSubFolder = (folderId: number, folderName: string, modified
   subFolder.modifiedBy = modifiedBy;
 
   overwriteAllFolders(allFolders);
-}
+};
 
 export {
   getTopLevelFolder,
@@ -118,5 +118,5 @@ export {
   saveFileToFolder,
   overwriteAllFolders,
   deleteFolderFromLocalStorage,
-  updateFolderAndSubFolder
+  updateFolderAndSubFolder,
 };

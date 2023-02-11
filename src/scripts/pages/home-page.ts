@@ -1,19 +1,23 @@
-import { parseFileExtension } from './../utilities/_file';
+import $ from 'jquery';
+import { parseFileExtension } from '../utilities/_file';
 import ready, { clearInput } from '../utilities/_helper';
 import renderTable from '../components/_table';
 import Folder from '../models/_folder';
-import $ from 'jquery';
 import MyFile from '../models/_file';
 import renderModalForm from '../components/_modal';
 import { FileUpdate } from '../types/_file';
+import { State } from '../types/_homepage';
 
 ready(() => {
   // init data, call this to make sure that there is data in local storage
   Folder.loadTopFolder();
 
   // state
-  const state = {
+  const state: State = {
     currentFolderId: 0,
+    setCurrentFolderId: (id: number) => {
+      state.currentFolderId = id;
+    },
   };
 
   // render intial view
@@ -59,7 +63,7 @@ ready(() => {
         const modifiedBy = $('#modifiedBy').val() as string;
 
         // check input, not valid then do nothing
-        if (!MyFile.validateFileInput(fileNameWithExtension, modified, modifiedBy)) {
+        if (!MyFile.validateFileInput(fileNameWithExtension, modified)) {
           return;
         }
 
@@ -105,15 +109,15 @@ ready(() => {
         : 'file';
 
       // get by using attr is fine =)) but not data =((
-      const id = parseInt($('#modal-title').attr('data-id') as string);
-      
+      const id = parseInt($('#modal-title').attr('data-id') as string, 10);
+
       if (type === 'file') {
         const fileNameWithExtension = $('#name').val() as string;
         const modified = Date.parse($('#modified').val() as string);
         const modifiedBy = $('#modifiedBy').val() as string;
 
         // check input, not valid then do nothing
-        if (!MyFile.validateFileInput(fileNameWithExtension, modified, modifiedBy)) {
+        if (!MyFile.validateFileInput(fileNameWithExtension, modified)) {
           return;
         }
 
@@ -132,7 +136,6 @@ ready(() => {
         renderTable(state);
         $('#modal-cancel-button').click();
         clearInput();
-
       } else if (type === 'folder') {
         const folderName = $('#name').val() as string;
         const modified = Date.parse($('#modified').val() as string);

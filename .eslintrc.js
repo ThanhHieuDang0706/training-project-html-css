@@ -1,5 +1,5 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   extends: ['airbnb-typescript-prettier'],
   plugins: ['prettier'],
   globals: {
@@ -8,13 +8,13 @@ module.exports = {
     window: true,
     fetch: true,
   },
-  ignorePatterns: ['/dist/js/**.js', 'webpack.config.js'],
+  ignorePatterns: ['/dist/js/**.js', 'webpack.config.js', '/node_modules'],
   rules: {
     'prettier/prettier': ['error'],
-    'linebreak-style': [
-      'error',
-      process.platform === 'win32' ? 'windows' : 'unix',
-    ],
+    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'import/dependency-cycle': 'off',
+    'consistent-return': 'off',
+    'import/no-cycle': 'off',
   },
 };

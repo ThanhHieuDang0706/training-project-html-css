@@ -9,6 +9,6 @@ const renderSpinner = () => {
 
 export const removeSpinner = () => {
   $('.spinner-border').remove();
-}
+};
 
 export default renderSpinner;

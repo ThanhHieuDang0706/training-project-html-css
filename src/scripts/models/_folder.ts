@@ -13,12 +13,18 @@ import MyFile from './_file';
 
 export default class Folder implements IFolder {
   id: number;
+
   folderName: string;
+
   parentFolder: number | null;
+
   items: Array<MyFile | Folder>;
+
   modified: number;
+
   modifiedBy: string;
-  isFile: boolean = false;
+
+  isFile = false;
 
   public static initialFolder = new Folder(0, 'top', [], null, Date.now(), '');
 
@@ -36,11 +42,10 @@ export default class Folder implements IFolder {
     const topLevelFolder = getTopLevelFolder();
     if (topLevelFolder) {
       return topLevelFolder as Folder;
-    } else {
-      addTopFolder();
-      const topLevelFolder = getTopLevelFolder();
-      return topLevelFolder as Folder;
     }
+    addTopFolder();
+    const newTopLevelFolder = getTopLevelFolder();
+    return newTopLevelFolder as Folder;
   };
 
   static loadAllFolders = (): Folder[] => {
@@ -64,10 +69,6 @@ export default class Folder implements IFolder {
     // save file to currentFolder in local storage
     file.saveFile();
     return saveFileToFolder(file, currentFolderId);
-  }
-
-  static addNewFile(newFile: MyFile, currentFolderId: number): void {
-    // add new file to currentFolder in local storage
   }
 
   save = (currentFolderId: number): void => {
@@ -109,9 +110,11 @@ export default class Folder implements IFolder {
   static validateFolderInput = (folderName: string, modified: number, modifiedBy: string): boolean => {
     if (folderName.length === 0) {
       return false;
-    } else if (isNaN(modified)) {
+    }
+    if (Number.isNaN(modified)) {
       return false;
-    } else if (modifiedBy.length === 0) {
+    }
+    if (modifiedBy.length === 0) {
       return false;
     }
     return true;

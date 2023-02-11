@@ -1,4 +1,3 @@
-
 const modal = () => `<!-- New File Modal -->
 <div
   class="modal fade"
@@ -40,22 +39,22 @@ const modal = () => `<!-- New File Modal -->
       </div>
     </div>
   </div>
-</div>`
+</div>`;
 
 const renderModalForm = () => {
-  $("#main-content").append(modal);
-}
+  $('#main-content').append(modal);
+};
 
 export const fillInput = (item: any, id: number) => {
   // set id in the input so editor can find it
-  $("#modal-title").attr("data-id", id);
-  $("#name").val(item.isFile ? `${item.fileName}.${item.fileExtension}` : item.folderName);
-  $("#modified").val(new Date(item.modified).toISOString().slice(0, 16));
-  $("#modifiedBy").val(item.modifiedBy);
-}
+  $('#modal-title').attr('data-id', id);
+  $('#name').val(item.isFile ? `${item.fileName}.${item.fileExtension}` : item.folderName);
+  $('#modified').val(new Date(item.modified).toISOString().slice(0, 16));
+  $('#modifiedBy').val(item.modifiedBy);
+};
 
 export const clearModal = () => {
-  $("#modal-form").remove();
-}
+  $('#modal-form').remove();
+};
 
 export default renderModalForm;

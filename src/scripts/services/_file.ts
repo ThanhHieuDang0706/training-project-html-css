@@ -1,6 +1,5 @@
 import MyFile from '../models/_file';
-import Folder from '../models/_folder';
-import { getAllFolders, getSelectedFolder, overwriteAllFolders } from './_folder';
+import { getAllFolders, overwriteAllFolders } from './_folder';
 
 const key = 'PrecioFiles';
 
@@ -55,9 +54,7 @@ export const deleteFileFromFolder = (id: number, folderId: number): void => {
     allFolders[folderIndex] = selectedFolder;
     overwriteAllFolders(allFolders);
   }
-  return;
 };
-
 
 export const saveFiles = (files: MyFile[]): void => {
   return localStorage.setItem(key, JSON.stringify(files));
@@ -67,7 +64,7 @@ export const saveUpdatedFileToFolder = (file: MyFile, currentFolderId: number): 
   const folders = getAllFolders();
   const folderIndex = folders.findIndex(f => f.id === currentFolderId);
   const selectedFolder = folders[folderIndex];
-  
+
   // update file in that folder
   const { items } = selectedFolder;
   const fileIndex = items.findIndex(f => f.isFile && f.id === file.id);

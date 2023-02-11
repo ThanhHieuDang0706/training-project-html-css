@@ -1,10 +1,11 @@
 import $ from 'jquery';
+import { parseZone } from 'moment';
 import Folder from '../models/_folder';
 import { folderIcon, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
-import { parseZone } from 'moment';
 import { fillInput } from './_modal';
 import renderSpinner, { removeSpinner } from './_loading';
+import { State } from '../types/_homepage';
 
 const tableHeader = `<thead>
 <tr>
@@ -98,7 +99,7 @@ const renderTableCell = (item: any) => `
 </tr>
 `;
 
-const renderTable = async (state: { currentFolderId: number }) => {
+const renderTable = async (state: State) => {
   if (state.currentFolderId === 0) {
     $('#back-button').hide();
   } else {
@@ -108,7 +109,6 @@ const renderTable = async (state: { currentFolderId: number }) => {
   const folder = Folder.loadSelectedFolder(state.currentFolderId);
   const { items } = folder;
   const table = $('table');
-  
 
   // add loading animation
   renderSpinner();
@@ -147,8 +147,8 @@ const renderTable = async (state: { currentFolderId: number }) => {
 
       if (type === 'folder') {
         td.on('click', () => {
-          const folderId = parseInt(td.data('id'));
-          state.currentFolderId = folderId;
+          const folderId = parseInt(td.data('id'), 10);
+          state.setCurrentFolderId(folderId);
           return renderTable(state);
         });
       }
@@ -156,10 +156,10 @@ const renderTable = async (state: { currentFolderId: number }) => {
 
     // add event listeners when clicking edit button
     $('button[data-action="edit"]').each((_, element) => {
-      const id = parseInt($(element).data('id'));
+      const id = parseInt($(element).data('id'), 10);
       const type = $(element).data('type');
 
-      element.onclick = () => {
+      $(element).on('click', () => {
         if (type === 'file') {
           $("label[for='name']").text('file name');
           $('#modal-title').text('Edit file');
@@ -173,25 +173,26 @@ const renderTable = async (state: { currentFolderId: number }) => {
           $('#modal-title').text('Edit folder');
           $('#modal-ok-button').text('Save');
           $('#modal-ok-button').attr('data-action', 'edit');
-          const folder = Folder.loadSelectedFolder(id);
-          fillInput(folder, id);
+          const currentFolder = Folder.loadSelectedFolder(id);
+          fillInput(currentFolder, id);
         }
-      };
+      });
     });
 
     // add event listeners when clicking delete button
     $('button[data-action="delete"]').each((_, element) => {
-      const id = parseInt($(element).data('id'));
+      const id = parseInt($(element).data('id'), 10);
       const type = $(element).data('type');
-      element.onclick = () => {
+      $(element).on('click', () => {
         if (type === 'file') {
           MyFile.deleteFile(id, state.currentFolderId);
           return renderTable(state);
-        } else if (type === 'folder') {
+        }
+        if (type === 'folder') {
           Folder.deleteFolder(id);
           return renderTable(state);
         }
-      };
+      });
     });
   }, Math.random() * 1000);
 };
