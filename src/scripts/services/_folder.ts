@@ -1,3 +1,4 @@
+import { isFile } from '../utilities/_file';
 import MyFile from '../models/_file';
 import Folder from '../models/_folder';
 import { deleteFileFromFolder } from './_file';
@@ -75,7 +76,7 @@ const deleteFolderFromLocalStorage = (id: number): void => {
 
   // delete all files and folders
   items.forEach(item => {
-    if (item.isFile) {
+    if (isFile(item)) {
       deleteFileFromFolder(item.id, id);
     } else {
       deleteFolderFromLocalStorage(item.id);
@@ -86,24 +87,24 @@ const deleteFolderFromLocalStorage = (id: number): void => {
   foldersAfterDelete.splice(folderIndex, 1);
   const parentIndex = foldersAfterDelete.findIndex(f => f.id === folderToDelete.parentFolder);
   const parentFolder = foldersAfterDelete[parentIndex];
-  parentFolder.items = parentFolder.items.filter(f => f.isFile || (!f.isFile && f.id !== folderToDelete.id));
+  parentFolder.items = parentFolder.items.filter(f => isFile(f) || (!isFile(f) && f.id !== folderToDelete.id));
   overwriteAllFolders(foldersAfterDelete);
 };
 
-const updateFolderAndSubFolder = (folderId: number, folderName: string, modified: number, modifiedBy: string, currentFolderId: number) => {
+const updateFolderAndSubFolder = (folderId: number, name: string, modified: number, modifiedBy: string, currentFolderId: number) => {
   // update folder list
   const allFolders = Folder.loadAllFolders();
   const index = allFolders.findIndex(folder => folder.id === folderId);
-  allFolders[index].folderName = folderName;
+  allFolders[index].name = name;
   allFolders[index].modified = modified;
   allFolders[index].modifiedBy = modifiedBy;
 
   // update current folder
   const currentFolderIndex = allFolders.findIndex(folder => folder.id === currentFolderId);
-  const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(folder => !folder.isFile && folder.id === folderId);
+  const subFolderIndex = allFolders[currentFolderIndex].items.findIndex(folder => !isFile(folder) && folder.id === folderId);
 
   const subFolder = allFolders[currentFolderIndex].items[subFolderIndex] as Folder;
-  subFolder.folderName = folderName;
+  subFolder.name = name;
   subFolder.modified = modified;
   subFolder.modifiedBy = modifiedBy;
 

@@ -10,27 +10,28 @@ import {
   updateFolderAndSubFolder,
 } from '../services/_folder';
 import MyFile from './_file';
+import Item, { ItemType } from '../types/_item';
 
 export default class Folder implements IFolder {
   id: number;
 
-  folderName: string;
+  name: string;
 
   parentFolder: number | null;
 
-  items: Array<MyFile | Folder>;
+  items: Array<Item>;
 
   modified: number;
 
   modifiedBy: string;
 
-  isFile = false;
+  itemType: ItemType = ItemType.Folder;
 
   public static initialFolder = new Folder(0, 'top', [], null, Date.now(), '');
 
-  constructor(id: number, folderName: string, items: Array<MyFile | Folder>, parentFolder: number | null, modified: number, modifiedBy: string) {
+  constructor(id: number, name: string, items: Array<Item>, parentFolder: number | null, modified: number, modifiedBy: string) {
     this.id = id;
-    this.folderName = folderName;
+    this.name = name;
     this.items = items;
     this.parentFolder = parentFolder;
     this.modified = modified;
@@ -58,10 +59,10 @@ export default class Folder implements IFolder {
     return selectedFolder;
   };
 
-  static createNewFolder = (folderName: string, modified: number, modifiedBy: string, parentFolderId: number): Folder => {
-    // create new folder with folderName and parentFolderId
+  static createNewFolder = (name: string, modified: number, modifiedBy: string, parentFolderId: number): Folder => {
+    // create new folder with name and parentFolderId
     const largestId = Math.max(...Folder.loadAllFolders().map(folder => folder.id)); // gen new id by adding the largest id to 1
-    const newFolder = new Folder(largestId + 1, folderName, [], parentFolderId, modified, modifiedBy);
+    const newFolder = new Folder(largestId + 1, name, [], parentFolderId, modified, modifiedBy);
     return newFolder;
   };
 
@@ -98,8 +99,8 @@ export default class Folder implements IFolder {
     }
   };
 
-  static updateFolder(folderId: number, folderName: string, modified: number, modifiedBy: string, currentFolderId: number): void {
-    updateFolderAndSubFolder(folderId, folderName, modified, modifiedBy, currentFolderId);
+  static updateFolder(folderId: number, name: string, modified: number, modifiedBy: string, currentFolderId: number): void {
+    updateFolderAndSubFolder(folderId, name, modified, modifiedBy, currentFolderId);
   }
 
   static deleteFolder = (folderId: number): void => {
@@ -107,8 +108,8 @@ export default class Folder implements IFolder {
     deleteFolderFromLocalStorage(folderId);
   };
 
-  static validateFolderInput = (folderName: string, modified: number, modifiedBy: string): boolean => {
-    if (folderName.length === 0) {
+  static validateFolderInput = (name: string, modified: number, modifiedBy: string): boolean => {
+    if (name.length === 0) {
       return false;
     }
     if (Number.isNaN(modified)) {

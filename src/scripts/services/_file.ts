@@ -1,4 +1,5 @@
 import MyFile from '../models/_file';
+import { isFile } from '../utilities/_file';
 import { getAllFolders, overwriteAllFolders } from './_folder';
 
 const key = 'PrecioFiles';
@@ -48,7 +49,7 @@ export const deleteFileFromFolder = (id: number, folderId: number): void => {
     const folderIndex = allFolders.findIndex(f => f.id === folderId);
     const selectedFolder = allFolders[folderIndex];
     const { items } = selectedFolder;
-    const fileIndex = items.findIndex(f => f.isFile && f.id === id);
+    const fileIndex = items.findIndex(f => isFile(f) && f.id === id);
     items.splice(fileIndex, 1);
     selectedFolder.items = items;
     allFolders[folderIndex] = selectedFolder;
@@ -67,7 +68,7 @@ export const saveUpdatedFileToFolder = (file: MyFile, currentFolderId: number): 
 
   // update file in that folder
   const { items } = selectedFolder;
-  const fileIndex = items.findIndex(f => f.isFile && f.id === file.id);
+  const fileIndex = items.findIndex(f => isFile(f) && f.id === file.id);
   items[fileIndex] = file;
   selectedFolder.items = items;
   overwriteAllFolders(folders);

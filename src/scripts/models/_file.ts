@@ -1,11 +1,12 @@
 import { isValidFileName } from '../utilities/_file';
 import IFile, { FileUpdate } from '../types/_file';
 import { getAllFiles, saveFile, deleteFileFromFolder, saveFiles, saveUpdatedFileToFolder } from '../services/_file';
+import { ItemType } from '../types/_item';
 
 export default class MyFile implements IFile {
   id: number;
 
-  fileName: string;
+  name: string;
 
   fileExtension: string;
 
@@ -13,11 +14,11 @@ export default class MyFile implements IFile {
 
   modifiedBy: string;
 
-  isFile = true;
+  itemType: ItemType = ItemType.File;
 
-  constructor(id: number, fileName: string, fileExtension: string, modified: number, modifiedBy: string) {
+  constructor(id: number, name: string, fileExtension: string, modified: number, modifiedBy: string) {
     this.id = id;
-    this.fileName = fileName;
+    this.name = name;
     this.fileExtension = fileExtension;
     this.modified = modified;
     this.modifiedBy = modifiedBy;
@@ -27,14 +28,14 @@ export default class MyFile implements IFile {
     return getAllFiles();
   };
 
-  static createNewFile = (fileName: string, fileExtension: string, modified: number, modifiedBy: string) => {
+  static createNewFile = (name: string, fileExtension: string, modified: number, modifiedBy: string) => {
     const maxFileId = Math.max(0, ...MyFile.loadAllFiles().map((file: MyFile) => file.id)); // simulate auto increment id by adding the largest id to 1
-    const newFile = new MyFile(maxFileId + 1, fileName, fileExtension, modified, modifiedBy);
+    const newFile = new MyFile(maxFileId + 1, name, fileExtension, modified, modifiedBy);
     return newFile;
   };
 
-  static validateFileInput = (fileNameWithExtension: string, modified: number): boolean => {
-    if (!isValidFileName(fileNameWithExtension)) {
+  static validateFileInput = (nameWithExtension: string, modified: number): boolean => {
+    if (!isValidFileName(nameWithExtension)) {
       return false;
     }
     if (modified === 0 || Number.isNaN(modified)) {
@@ -55,7 +56,7 @@ export default class MyFile implements IFile {
     // save the file to file list
     const allFiles = getAllFiles();
     const fileIndex = allFiles.findIndex((file: MyFile) => file.id === id);
-    const newFile = new MyFile(id, changes.fileName, changes.fileExtension, changes.modified, changes.modifiedBy);
+    const newFile = new MyFile(id, changes.name, changes.fileExtension, changes.modified, changes.modifiedBy);
     allFiles[fileIndex] = newFile;
     saveFiles(allFiles);
 

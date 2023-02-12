@@ -1,3 +1,5 @@
+import Item, { ItemType } from '../types/_item';
+
 export const isValidFileName = (fileName: string): boolean => {
   const rg1 = /^[^\\/:*?"<>|]+$/; // forbidden characters \ / : * ? " < > |
   const rg2 = /^\./; // cannot start with dot (.)
@@ -24,4 +26,8 @@ export const parseFileExtension = (fileName: string) => {
   if (fileSplit.length === 1) return '';
   const fileExtension = fileSplit[fileSplit.length - 1];
   return fileExtension ? fileExtension.toLowerCase() : '';
+};
+
+export const isFile = (item: Item) => {
+  return item && item.itemType === ItemType.File;
 };

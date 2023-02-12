@@ -1,11 +1,12 @@
 import $ from 'jquery';
 import { parseZone } from 'moment';
 import Folder from '../models/_folder';
-import { folderIcon, mapFileExtensionToIcon } from '../utilities/_file';
+import { folderIcon, isFile, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { fillInput } from './_modal';
 import renderSpinner, { removeSpinner } from './_loading';
 import { State } from '../types/_homepage';
+import Item from '../types/_item';
 
 const tableHeader = `<thead>
 <tr>
@@ -35,7 +36,7 @@ const tableHeader = `<thead>
 </tr>
 </thead>`;
 
-const renderTableCell = (item: any) => `
+const renderTableCell = (item: Item) => `
 <tr>
 
   <td class="table-first-row">
@@ -44,17 +45,17 @@ const renderTableCell = (item: any) => `
     </div>
 
     <div class="col-xs-9">
-      ${!item.isFile ? folderIcon : mapFileExtensionToIcon(item.fileExtension)}
+      ${!isFile(item) ? folderIcon : mapFileExtensionToIcon((<MyFile>item).fileExtension)}
     </div>
   </td>
 
-  <td class="f-name" data-id="${!item.isFile ? item.id : ''}" data-type="${item.isFile ? 'file' : 'folder'}" >
+  <td class="f-name" data-id="${!isFile(item) ? item.id : ''}" data-type="${isFile(item) ? 'file' : 'folder'}" >
     <div class="table-row-header col-xs-3">
       Name
     </div>
 
     <div class="col-xs-9">
-      ${!item.isFile ? item.folderName : `${item.fileName}.${item.fileExtension}`}
+      ${!isFile(item) ? item.name : `${(<MyFile>item).name}.${(<MyFile>item).fileExtension}`}
     </div>
   </td>
 
@@ -74,7 +75,7 @@ const renderTableCell = (item: any) => `
     </div>
 
     <div class="modified-col col-xs-9">
-      ${!item.isFile ? item.modifiedBy : item.modifiedBy}
+      ${!isFile(item) ? item.modifiedBy : item.modifiedBy}
     </div>
   </td>
 
@@ -86,11 +87,11 @@ const renderTableCell = (item: any) => `
     <div class="modified-col col-xs-9">
       <div class="btn-group" role="group" aria-label="btn actions">
         <button data-toggle="modal" data-target="#modal-form" data-action="edit" data-id="${item.id}" data-type="${
-  item.isFile ? 'file' : 'folder'
+  isFile(item) ? 'file' : 'folder'
 }" type="button" class="btn btn-sm btn-primary">
           <i class="fa fa-pencil"></i>
         </button>
-        <button data-action="delete" data-id="${item.id}" data-type="${item.isFile ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-danger">
+        <button data-action="delete" data-id="${item.id}" data-type="${isFile(item) ? 'file' : 'folder'}" type="button" class="btn btn-sm btn-danger">
           <i class="fa fa-trash"></i>
         </button>
       </div>

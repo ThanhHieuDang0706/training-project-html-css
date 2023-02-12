@@ -127,7 +127,7 @@ ready(() => {
         const changes: FileUpdate = {
           id,
           fileExtension,
-          fileName,
+          name: fileName,
           modified,
           modifiedBy,
         };

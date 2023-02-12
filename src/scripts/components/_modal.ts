@@ -1,3 +1,6 @@
+import MyFile from '../types/_file';
+import Item, { ItemType } from '../types/_item';
+
 const modal = () => `<!-- New File Modal -->
 <div
   class="modal fade"
@@ -45,10 +48,10 @@ const renderModalForm = () => {
   $('#main-content').append(modal);
 };
 
-export const fillInput = (item: any, id: number) => {
+export const fillInput = (item: Item, id: number) => {
   // set id in the input so editor can find it
   $('#modal-title').attr('data-id', id);
-  $('#name').val(item.isFile ? `${item.fileName}.${item.fileExtension}` : item.folderName);
+  $('#name').val(item.itemType === ItemType.File ? `${item.name}.${(<MyFile>item).fileExtension}` : item.name);
   $('#modified').val(new Date(item.modified).toISOString().slice(0, 16));
   $('#modifiedBy').val(item.modifiedBy);
 };

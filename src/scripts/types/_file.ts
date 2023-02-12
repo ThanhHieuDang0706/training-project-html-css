@@ -1,18 +1,13 @@
-type MyFile = {
-  id: number;
-  fileName: string;
+import Item from './_item';
+
+export default interface MyFile extends Item {
   fileExtension: string;
-  modified: number;
-  modifiedBy: string;
-  isFile: boolean;
-};
+}
 
 export type FileUpdate = {
   id: number;
-  fileName: string;
+  name: string;
   fileExtension: string;
   modified: number;
   modifiedBy: string;
 };
-
-export default MyFile;

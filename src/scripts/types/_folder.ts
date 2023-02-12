@@ -1,12 +1,6 @@
-import MyFile from '../models/_file';
+import Item from './_item';
 
-type Folder = {
-  id: number;
-  folderName: string;
+export default interface Folder extends Item {
   parentFolder: number | null;
-  items: Array<MyFile | Folder>;
-  modified: number;
-  modifiedBy: string;
-};
-
-export default Folder;
+  items: Array<Item>;
+}
