@@ -12,6 +12,14 @@ export const fileExtensionToIconMapper: Record<string, string> = {
   xls: '<i class="text-success fa fa-light fa-file-excel"></i>',
   docx: '<i class="text-primary fa fa-light fa-file-word"></i>',
   doc: '<i class="text-primary fa fa-light fa-file-word"></i>',
+  pptx: '<i class="text-danger fa fa-light fa-file-powerpoint"></i>',
+  ppt: '<i class="text-danger fa fa-light fa-file-powerpoint"></i>',
+  pdf: '<i class="text-danger fa fa-light fa-file-pdf"></i>',
+  txt: '<i class="text-secondary fa fa-light fa-file-alt"></i>',
+  zip: '<i class="text-secondary fa fa-light fa-file-archive"></i>',
+  rar: '<i class="text-secondary fa fa-light fa-file-archive"></i>',
+  mp4: '<i class="text-secondary fa fa-light fa-file-video"></i>',
+  mp3: '<i class="text-secondary fa fa-light fa-file-audio"></i>',
 };
 
 export const defaultFileIcon = '<i class="text-secondary fa fa-light fa-file"></i>';
