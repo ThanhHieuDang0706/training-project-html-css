@@ -117,12 +117,12 @@ const renderTable = async (state: HomeState) => {
   setTimeout(() => {
     table.empty();
     removeSpinner();
-    if (items.length === 0) return table.append(`<p class="text-center">There is no item in this folder</p>`);
+    if (items.length === 0) return table.append('<p class="text-center">There is no item in this folder</p>');
     // add table header
     table.append(tableHeader);
 
     // add empty table body
-    table.append(`<tbody></tbody>`);
+    table.append('<tbody></tbody>');
 
     // get table body
     const tableBody = table.find('tbody');
@@ -161,19 +161,19 @@ const renderTable = async (state: HomeState) => {
       const type = $(element).data('type');
 
       $(element).on('click', () => {
+        const modalOkButton = $('#modal-ok-button');
         if (type === 'file') {
           $("label[for='name']").text('file name');
           $('#modal-title').text('Edit file');
-          $('#modal-ok-button').text('Save');
-          $('#modal-ok-button').attr('data-action', 'edit');
+          modalOkButton.text('Save');
+          modalOkButton.attr('data-action', 'edit');
           const file = MyFile.getFileById(id);
-
           fillInput(file, id);
         } else if (type === 'folder') {
           $("label[for='name']").text('folder name');
           $('#modal-title').text('Edit folder');
-          $('#modal-ok-button').text('Save');
-          $('#modal-ok-button').attr('data-action', 'edit');
+          modalOkButton.text('Save');
+          modalOkButton.attr('data-action', 'edit');
           const currentFolder = Folder.loadSelectedFolder(id);
           fillInput(currentFolder, id);
         }
@@ -195,7 +195,7 @@ const renderTable = async (state: HomeState) => {
         }
       });
     });
-  }, Math.random() * 1000);
+  }, Math.random() * 1000); // just random time to show loading animation
 };
 
 export default renderTable;
