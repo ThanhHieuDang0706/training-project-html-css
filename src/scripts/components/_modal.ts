@@ -2,7 +2,8 @@ import MyFile from '../interfaces/_file';
 import Item, { ItemType } from '../interfaces/_item';
 
 const modal = () => `<!-- New File Modal -->
-<div
+<div 
+  data-keyboard="false" data-backdrop="static"
   class="modal fade"
   id="modal-form"
   tabindex="-1"
