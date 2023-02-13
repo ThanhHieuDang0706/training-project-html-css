@@ -5,7 +5,7 @@ import { folderIcon, isFile, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { fillInput } from './_modal';
 import renderSpinner, { removeSpinner } from './_loading';
-import { State } from '../interfaces/_homepage';
+import { HomeState } from '../interfaces/_homepage';
 import Item from '../interfaces/_item';
 
 const tableHeader = `<thead>
@@ -100,7 +100,7 @@ const renderTableCell = (item: Item) => `
 </tr>
 `;
 
-const renderTable = async (state: State) => {
+const renderTable = async (state: HomeState) => {
   if (state.currentFolderId === 0) {
     $('#back-button').hide();
   } else {

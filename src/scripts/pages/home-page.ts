@@ -6,14 +6,14 @@ import Folder from '../models/_folder';
 import MyFile from '../models/_file';
 import renderModalForm from '../components/_modal';
 import { FileUpdate } from '../interfaces/_file';
-import { State } from '../interfaces/_homepage';
+import { HomeState } from '../interfaces/_homepage';
 
 ready(() => {
   // init data, call this to make sure that there is data in local storage
   Folder.loadTopFolder();
 
   // state
-  const state: State = {
+  const state: HomeState = {
     currentFolderId: 0,
     setCurrentFolderId: (id: number) => {
       state.currentFolderId = id;
