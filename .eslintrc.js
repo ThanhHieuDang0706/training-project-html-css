@@ -12,6 +12,7 @@ module.exports = {
   ignorePatterns: ['/dist/js/**.js', 'webpack.config.js', '/node_modules'],
   rules: {
     'prettier/prettier': ['error'],
+    '@typescript-eslint/no-unused-vars': ['error'],
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-shadow': 'off',
