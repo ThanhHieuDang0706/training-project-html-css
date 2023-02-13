@@ -29,19 +29,21 @@ ready(() => {
   // clicking new file button
   $('#newFileButton').on('click', () => {
     clearInput();
-    $("label[for='name']").text('File name');
+    $('label[for="name"]').text('File name');
     $('#modal-title').text('Create new file');
-    $('#modal-ok-button').text('Create');
-    $('#modal-ok-button').attr('data-action', 'create');
+    const modalOkButton = $('#modal-ok-button');
+    modalOkButton.text('Create');
+    modalOkButton.attr('data-action', 'create');
   });
 
   // clicking new folder button
   $('#newFolderButton').on('click', () => {
     clearInput();
-    $("label[for='name']").text('Folder name');
+    $('label[for="name"]').text('Folder name');
     $('#modal-title').text('Create new folder');
-    $('#modal-ok-button').text('Create');
-    $('#modal-ok-button').attr('data-action', 'create');
+    const modalOkButton = $('#modal-ok-button');
+    modalOkButton.text('Create');
+    modalOkButton.attr('data-action', 'create');
   });
 
   // when clicking ok button in modal form
@@ -102,14 +104,10 @@ ready(() => {
     }
 
     if (action === 'edit') {
-      const type = $('#modal-title')
-        .text()
-        .includes('folder')
-        ? 'folder'
-        : 'file';
-
+      const modalTitleElement = $('#modal-title');
+      const type = modalTitleElement.text().includes('folder') ? 'folder' : 'file';
       // get by using attr is fine =)) but not data =((
-      const id = parseInt($('#modal-title').attr('data-id') as string, 10);
+      const id = parseInt(modalTitleElement.attr('data-id') as string, 10);
 
       if (type === 'file') {
         const fileNameWithExtension = $('#name').val() as string;
@@ -154,8 +152,7 @@ ready(() => {
   });
 
   $('#back-button').on('click', () => {
-    const parentFolderId = Folder.loadSelectedFolder(state.currentFolderId).parentFolder as number;
-    state.currentFolderId = parentFolderId;
+    state.setCurrentFolderId(Folder.loadSelectedFolder(state.currentFolderId).parentFolder as number);
     renderTable(state);
   });
 });

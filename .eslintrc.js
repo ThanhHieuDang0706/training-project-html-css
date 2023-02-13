@@ -14,7 +14,7 @@ module.exports = {
     'prettier/prettier': ['error'],
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-
+    'no-shadow': 'off',
     'consistent-return': 'off',
     'import/no-cycle': 'off',
   },
