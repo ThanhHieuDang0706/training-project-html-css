@@ -12,17 +12,6 @@ export const getAllFiles = (): MyFile[] => {
   }
   return [];
 };
-
-export const getFileById = (id: number): MyFile | undefined => {
-  const files = localStorage.getItem(key);
-  if (files) {
-    const parsedFiles = JSON.parse(files) as MyFile[];
-    const selectedFile = parsedFiles.find(f => f.id === id);
-    return selectedFile;
-  }
-  return undefined;
-};
-
 export const saveFile = (file: MyFile): void => {
   const files = localStorage.getItem(key);
   if (files) {
