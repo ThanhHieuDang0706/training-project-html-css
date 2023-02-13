@@ -1,4 +1,4 @@
-import IFolder from '../types/_folder';
+import IFolder from '../interfaces/_folder';
 import {
   addTopFolder,
   getTopLevelFolder,
@@ -10,7 +10,7 @@ import {
   updateFolderAndSubFolder,
 } from '../services/_folder';
 import MyFile from './_file';
-import Item, { ItemType } from '../types/_item';
+import Item, { ItemType } from '../interfaces/_item';
 
 export default class Folder implements IFolder {
   id: number;

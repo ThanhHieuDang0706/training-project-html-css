@@ -1,5 +1,5 @@
-import MyFile from '../types/_file';
-import Item, { ItemType } from '../types/_item';
+import MyFile from '../interfaces/_file';
+import Item, { ItemType } from '../interfaces/_item';
 
 const modal = () => `<!-- New File Modal -->
 <div

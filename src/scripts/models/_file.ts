@@ -1,7 +1,7 @@
 import { isValidFileName } from '../utilities/_file';
-import IFile, { FileUpdate } from '../types/_file';
+import IFile, { FileUpdate } from '../interfaces/_file';
 import { getAllFiles, saveFile, deleteFileFromFolder, saveFiles, saveUpdatedFileToFolder } from '../services/_file';
-import { ItemType } from '../types/_item';
+import { ItemType } from '../interfaces/_item';
 
 export default class MyFile implements IFile {
   id: number;

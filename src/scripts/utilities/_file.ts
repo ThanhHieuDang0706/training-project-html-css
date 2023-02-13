@@ -1,4 +1,4 @@
-import Item, { ItemType } from '../types/_item';
+import Item, { ItemType } from '../interfaces/_item';
 
 export const isValidFileName = (fileName: string): boolean => {
   const rg1 = /^[^\\/:*?"<>|]+$/; // forbidden characters \ / : * ? " < > |

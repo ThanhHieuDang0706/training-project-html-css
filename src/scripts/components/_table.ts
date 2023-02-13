@@ -5,8 +5,8 @@ import { folderIcon, isFile, mapFileExtensionToIcon } from '../utilities/_file';
 import MyFile from '../models/_file';
 import { fillInput } from './_modal';
 import renderSpinner, { removeSpinner } from './_loading';
-import { State } from '../types/_homepage';
-import Item from '../types/_item';
+import { State } from '../interfaces/_homepage';
+import Item from '../interfaces/_item';
 
 const tableHeader = `<thead>
 <tr>
